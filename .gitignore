@@ -1,0 +1,17 @@
+/marketplace/node_modules
+/marketplace/public/hot
+/marketplace/public/storage
+/marketplace/storage/*.key
+/marketplace/vendor
+.env
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/marketplace/.idea
+/marketplace/.vscode
+/.db
+/.docker/db

@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: marketplace
+        uid: 1000
+      context: ./
+      dockerfile: ./.docker/Dockerfile
+    image: marketplace
+    container_name: marketplace-app
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./marketplace/:/var/www
+    networks:
+      - marketplace
+
+  nginx:
+    image: nginx:alpine
+    container_name: marketplace-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./marketplace/:/var/www
+      - ./.docker/nginx/:/etc/nginx/conf.d/
+    networks:
+      - marketplace
+
+  mysql8.0:
+    image: mysql:8.0
+    container_name: mysql8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./.docker/db/:/var/lib/mysql
+    ports:
+      - "3366:3306"
+
+networks:
+  marketplace:
+    driver: bridge
