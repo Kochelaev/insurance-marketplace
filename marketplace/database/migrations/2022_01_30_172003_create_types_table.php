@@ -23,7 +23,6 @@ class CreateTypesTable extends Migration
 
             $table->index('category_id', 'type_category_idx');
             $table->foreign('category_id', 'type_category_fk')->on('categories')->references('id');
-
         });
     }
 

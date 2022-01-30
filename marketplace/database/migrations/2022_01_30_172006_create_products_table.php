@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
 
-            $table->softDeletes();            
+            $table->softDeletes();
 
             $table->index('type_id', 'product_type_idx');
             $table->foreign('type_id', 'product_type_fk')->on('types')->references('id');

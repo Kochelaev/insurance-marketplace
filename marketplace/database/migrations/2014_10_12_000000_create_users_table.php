@@ -29,9 +29,8 @@ class CreateUsersTable extends Migration
             $table->string('city');
             $table->string('adress');
             $table->timestamps();
-            
+
             $table->softDeletes();
-            
         });
     }
 

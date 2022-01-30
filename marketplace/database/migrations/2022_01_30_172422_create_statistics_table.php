@@ -16,7 +16,7 @@ class CreateStatisticsTable extends Migration
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('user_id');            
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->softDeletes();

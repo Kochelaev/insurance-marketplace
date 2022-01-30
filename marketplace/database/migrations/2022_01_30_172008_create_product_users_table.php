@@ -19,7 +19,7 @@ class CreateProductUsersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->boolean('is_actually')->default(true);
             $table->timestamps();
-            
+
             $table->softDeletes();
 
             $table->index('product_id', 'product_users_product_idx');
