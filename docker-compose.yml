@@ -30,13 +30,16 @@ services:
 
   mysql8.0:
     image: mysql:8.0
-    container_name: mysql8.0
+    container_name: marketplace-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: marketplace
     volumes:
       - ./.docker/db/:/var/lib/mysql
     ports:
       - "3366:3306"
+    networks:
+      - marketplace  
 
 networks:
   marketplace:
