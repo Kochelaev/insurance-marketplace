@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('type_id');
             $table->text('description')->nullable();
+            $table->text('coefficients');
             $table->timestamps();
 
             $table->softDeletes();

@@ -31,6 +31,7 @@ services:
   mysql8.0:
     image: mysql:8.0
     container_name: marketplace-mysql
+    restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: marketplace

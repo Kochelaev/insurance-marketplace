@@ -15,9 +15,10 @@ class CreateTypesTable extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->string('type')->unique();
             $table->unsignedBigInteger('category_id');
-            $table->timestamps();
+            $table->text('formula')->nullable(); //убери nullable
+            $table->timestamps();            
 
             $table->softDeletes();
 
