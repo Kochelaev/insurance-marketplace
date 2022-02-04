@@ -9,13 +9,5 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Type extends Model
 {
     use HasFactory;
-    use SoftDeletes;
-
-    static public function fastMake(string $title, int $catId)
-    {
-        $type = new Type();
-        $type->type = $title;
-        $type->category_id = $catId;
-        $type->save();
-    }
+    use SoftDeletes;    
 }
