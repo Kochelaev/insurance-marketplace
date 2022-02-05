@@ -4,14 +4,52 @@
     <meta charset="UTF-8">       
     <title>Застрахуй братуху</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom"> <pre>   </pre>         
+    <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom container">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-            <img src="http://www.raskraska.com/catalog0001/1687.png" height="50" alt='ico'>
-            <span class="fs-3">Застрахуй братуху</span> 
+          
+          <span class="fs-4">Застрахуй братуху</span>
         </a>
-</div>
+  
+        <nav class="d-inline-flex mt-2 mt-md-2 ms-md-auto">
+         
+          <div class="btn-group container">
+            <button type="button" class="btn btn-primary">Авто</button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Link 1</a>
+              <a class="dropdown-item" href="#">Link 2</a>
+            </div>
+          </div>
+
+          <div class="btn-group container">
+            <button type="button" class="btn btn-primary">Недвижимость</button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Link 1</a>
+              <a class="dropdown-item" href="#">Link 2</a>
+            </div>
+          </div>
+
+          <div class="btn-group container">
+            <button type="button" class="btn btn-primary">Здоровье</button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Link 1</a>
+              <a class="dropdown-item" href="#">Link 2</a>
+            </div>
+          </div>
+          
+          
+        </nav>
+      </div>
 
 @if($errors->any())
     <div class="alert-danger alert-danger">
