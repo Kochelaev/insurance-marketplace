@@ -14,3 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'MainController@allProductsShow');
+
+Route::get('/category/{id}', 'MainController@productsByCategoryShow');
+
+Route::get('/type/{id}', 'MainController@productsByTypeShow');
+
+Route::get('/companys', 'MainController@allCompanyShow');
+
+Route::get('/company/{id}', 'MainController@allCompanyShow');

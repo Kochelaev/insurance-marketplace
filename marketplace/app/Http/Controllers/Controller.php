@@ -12,7 +12,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;       
 
-    public $service;
+    public $service;    
 
     public function __construct(Service $service)
     {

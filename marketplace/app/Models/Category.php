@@ -15,8 +15,6 @@ class Category extends Model
 
     public function types()
     {
-        // return $this->hasMany(Type::class, 'type_category_fk', 'id');
         return $this->hasMany(Type::class, 'category_id', 'id');
     }
-
 }

@@ -4,11 +4,39 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\Type;
+use App\Models\Product;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Service
 {
-    public function sayHello()
+    public function getNavMenu(): array
     {
-        return "hello world!";
+        $categorys = Category::all();
+        foreach ($categorys as $category) {
+            $types = $category->types;
+            $result[$category->category]['id'] = $category->id;
+            $result[$category->category]['types'] = array();
+            foreach ($types as $type) {
+                $result[$category->category]['types'][$type->id] = $type->type;
+            }
+        }
+        return $result;
+    }
+
+    public function getProductsByType(int $typeId)
+    {
+        $products = Product::where('type_id', $typeId)->paginate(10);
+        return $products;
+    }
+
+    public function getProductsByCategory(int $categoryId)
+    {
+        $category = Category::find($categoryId);
+        $types = $category->types;       
+        foreach ($types as $type){
+          $typesId[]=$type->id;         
+        }
+        $products = Product::whereIn('type_id', $typesId)->paginate(10);
+        return $products; 
     }
 }

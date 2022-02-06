@@ -10,46 +10,27 @@
 </head>
 <body>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom container">
-        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-          
+        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">          
           <span class="fs-4">Застрахуй братуху</span>
         </a>
-  
-        <nav class="d-inline-flex mt-2 mt-md-2 ms-md-auto">
-         
-          <div class="btn-group container">
-            <button type="button" class="btn btn-primary">Авто</button>
-            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Link 1</a>
-              <a class="dropdown-item" href="#">Link 2</a>
-            </div>
-          </div>
 
-          <div class="btn-group container">
-            <button type="button" class="btn btn-primary">Недвижимость</button>
-            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Link 1</a>
-              <a class="dropdown-item" href="#">Link 2</a>
-            </div>
-          </div>
-
-          <div class="btn-group container">
-            <button type="button" class="btn btn-primary">Здоровье</button>
-            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Link 1</a>
-              <a class="dropdown-item" href="#">Link 2</a>
-            </div>
-          </div>
-          
-          
-        </nav>
+      
+     <nav class="d-inline-flex mt-2 mt-md-2 ms-md-auto">
+      @while (current($navMenu))
+      <div class="btn-group container">
+        <a href="/category/{{current($navMenu)['id']}}" type="button" class="btn btn-primary">{{key($navMenu)}}</a>
+        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+        </button>
+        <div class="dropdown-menu">      
+      @foreach (current($navMenu)['types'] as $subId => $subMenu)
+        <a class="dropdown-item" href="/type/{{$subId}}">{{$subMenu}}</a>        
+          @endforeach
+        @php next($navMenu) @endphp 
       </div>
+    </div>
+      @endwhile
+     </nav>
+    </div>
 
 @if($errors->any())
     <div class="alert-danger alert-danger">
@@ -60,6 +41,7 @@
         </ul>        
     </div>
 @endif
+
 
 <div class="container">
 @yield('main_content')
