@@ -13,22 +13,21 @@ class MainController extends Controller
 {
     public function allProductsShow()
     {
-        $products = Product::paginate(10);        
+        $products = Product::paginate(10);       
         return view('welcome', compact('products'))
             ->with('navMenu', $this->service->getNavMenu());
     }
 
     public function productsByCategoryShow($categoryId)
-    {  
+    {
         $products = $this->service->getProductsByCategory($categoryId);
         return view('welcome', compact('products'))
             ->with('navMenu', $this->service->getNavMenu());
-       
     }
 
     public function productsByTypeShow($typeId)
     {
-        $products = $this->service->getProductsByType($typeId);        
+        $products = $this->service->getProductsByType($typeId);
         return view('welcome', compact('products'))
             ->with('navMenu', $this->service->getNavMenu());
     }

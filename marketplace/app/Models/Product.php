@@ -10,4 +10,9 @@ class Product extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public function company()
+    {
+        return $this->belongsTo(User::class, 'owner_id', 'id');
+    }
 }

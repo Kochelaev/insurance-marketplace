@@ -32,11 +32,11 @@ class Service
     public function getProductsByCategory(int $categoryId)
     {
         $category = Category::find($categoryId);
-        $types = $category->types;       
-        foreach ($types as $type){
-          $typesId[]=$type->id;         
+        $types = $category->types;
+        foreach ($types as $type) {
+            $typesId[] = $type->id;
         }
-        $products = Product::whereIn('type_id', $typesId)->paginate(10);
-        return $products; 
+        $products = Product::whereIn('type_id', $typesId)->orderBy('id')->paginate(10);
+        return $products;
     }
 }

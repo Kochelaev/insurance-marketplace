@@ -2,9 +2,20 @@
 
     @section('main_content')    
 
+    <div>
+        {{$products->links()}}
+    </div>
+
     <div class = "text-center m-3 p-3">
        @foreach ($products as $product)       
-        <div>{{$product->id}} {{$product->title}} </div>
+        <div class="alert alert-primary">            
+            <div class = "lead text-left">
+                {{-- {{$product->id}}  --}}
+                {{$product->title}} 
+            </div>
+            <div>{{$product->company->company}}</div>
+            <div>{{$product->description}}</div>
+        </div>
        @endforeach
     </div>
 
