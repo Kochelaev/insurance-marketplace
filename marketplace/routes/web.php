@@ -1,6 +1,9 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +25,7 @@ Route::get('/type/{id}', 'MainController@productsByTypeShow');
 Route::get('/companys', 'MainController@allCompanyShow');
 
 Route::get('/company/{id}', 'MainController@allCompanyShow');
+
+Route::get('/search', 'SearchController@search')->name('web.search');
+
+Route::get('/test', 'MainController@test');

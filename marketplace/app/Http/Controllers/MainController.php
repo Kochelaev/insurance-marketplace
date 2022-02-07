@@ -36,5 +36,5 @@ class MainController extends Controller
     {
         $companys = User::where('company', '!=', null)->paginate();
         dd($companys);
-    }
+    }    
 }
