@@ -40,7 +40,31 @@ services:
     ports:
       - "3366:3306"
     networks:
-      - marketplace  
+      - marketplace   
+
+  elasticsearch:
+    container_name: marketplace-search
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
+    environment:
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+      - "bootstrap.memory_lock=true"
+    networks:
+      - marketplace
+    ports:
+      - 9200:9200
+
+  kibana:
+    container_name: marketplace-kibana
+    image: docker.elastic.co/kibana/kibana:7.11.0
+    environment:
+      - ELASTICSEARCH_HOSTS=http://es-container:9200
+    networks:
+      - marketplace
+    depends_on:
+      - elasticsearch
+    ports:
+      - 5601:5601
 
 networks:
   marketplace:
