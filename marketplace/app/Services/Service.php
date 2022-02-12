@@ -3,9 +3,8 @@
 namespace App\Services;
 
 use App\Models\Category;
-use App\Models\Type;
 use App\Models\Product;
-use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class Service
 {

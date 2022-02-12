@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Repositoryes;
+
+use Illuminate\Database\Eloquent\Collection;
+use App\Interfaces\SearchInterface;
+use App\Models\Product;
+
+class EloquentProducts implements SearchInterface
+{
+    public function search(string $query = ''): Collection
+    {
+        return Product::query()
+            ->where('title', 'like', "%{$query}%")
+            ->orWhere('content', 'like', "%{$query}%")
+            ->orWhere('description', 'like', "%{$query}%")
+            ->get();
+    }
+
+    public function all()
+    {
+        return Product::all();
+    }
+}
