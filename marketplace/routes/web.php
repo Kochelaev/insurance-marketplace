@@ -2,7 +2,10 @@
 
 
 use Illuminate\Support\Facades\Route;
-
+use App\Services\Service;
+use App\Models\Product;
+use App\Repository\ProductInterface;
+use App\Repository\EloquentProducts;
 
 
 /*
@@ -26,6 +29,18 @@ Route::get('/companys', 'MainController@allCompanyShow');
 
 Route::get('/company/{id}', 'MainController@allCompanyShow');
 
-Route::get('/search', 'SearchController@search')->name('web.search');
+//Route::get('/search', 'SearchController@search')->name('web.search');
 
 Route::get('/test', 'MainController@test');
+
+Route::get('/search', function(ProductInterface $repository){
+    $service = new Service();
+    $navMenu = $service->getNavMenu();
+    
+    $products = $repository->search(request('q'));
+    
+    return view('elastic', [
+        'products' => $products,        
+    ])    
+    ->with('navMenu', $navMenu);
+});
