@@ -29,6 +29,10 @@
       </div>
     </div>
       @endwhile
+    <div class="btn-success">
+      <a href="/companys" type="button" class="btn btn-success"> Компании </a>
+    </div>
+      
      </nav>
     </div>
 

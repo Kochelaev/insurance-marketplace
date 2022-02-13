@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Repository\ProductInterface;
-use App\Services\ProductService;
 use App\Services\Helper;
 
 

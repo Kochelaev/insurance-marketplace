@@ -24,9 +24,9 @@ Route::get('/category/{id}', 'ProductController@productsByCategoryShow');
 
 Route::get('/type/{id}', 'ProductController@productsByTypeShow');
 
-Route::get('/companys', 'MainController@allCompanyShow');
+Route::get('/companys', 'CompanyController@allCompanysShow');
 
-Route::get('/company/{id}', 'MainController@allCompanyShow');
+Route::get('/company/{id}', 'CompanyController@companyShow');
 
 Route::get('/search', 'SearchController@search');
 
