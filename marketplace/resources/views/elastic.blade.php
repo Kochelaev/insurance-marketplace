@@ -3,7 +3,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            {{-- Products <small>({{ count($products) }})</small> --}}
+            Products <small>({{ count($products) }})</small>
         </div>
         <div class="card-body">
             <form action="{{ url('search') }}" method="get">

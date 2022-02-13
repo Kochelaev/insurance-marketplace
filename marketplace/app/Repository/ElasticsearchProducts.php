@@ -50,4 +50,9 @@ class ElasticsearchProducts implements ProductInterface
                 return array_search($article->getKey(), $ids);
             });
     }
+
+    public static function all()
+    {
+        return Product::all();
+    }
 }

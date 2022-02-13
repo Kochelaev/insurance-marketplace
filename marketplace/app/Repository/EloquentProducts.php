@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Collection;
 
 class EloquentProducts implements ProductInterface
 {
-    public function search (string $query = ''):Collection
+    public function search(string $query = ''): Collection
     {
         return Product::query()
             ->where('title', 'like', "%{$query}%")
             ->orWhere('content', 'like', "%{$query}%")
             ->get();
+    }
+
+    public static function all()
+    {
+        return Product::all();
     }
 }
