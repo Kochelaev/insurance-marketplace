@@ -10,8 +10,12 @@ use Elasticsearch\Client;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
+
+
 class AppServiceProvider extends ServiceProvider
 {
+    
+
     /**
      * Register any application services.
      *
@@ -19,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+<<<<<<< HEAD
         $this->app->bind(ProductInterface::class, function ($app) {
                 
                 if (!config('services.search.enabled')) {
@@ -41,6 +46,9 @@ class AppServiceProvider extends ServiceProvider
                 ->setHosts($app['config']->get('services.search.hosts'))
                 ->build();
         });
+=======
+        //$this->app->bind(SearchInterface::class, EloquentProducts::class);
+>>>>>>> 24d7a2775c7e5653a30afaa653f9fd357b3a2ba7
     }
 
     /**
@@ -52,4 +60,6 @@ class AppServiceProvider extends ServiceProvider
     {        
         Paginator::useBootstrap();
     }
+
+    
 }

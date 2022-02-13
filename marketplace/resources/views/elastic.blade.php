@@ -3,7 +3,11 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
+<<<<<<< HEAD
             Products <small>({{ count($products) }})</small>
+=======
+            {{-- Products <small>({{ count($products) }})</small> --}}
+>>>>>>> 24d7a2775c7e5653a30afaa653f9fd357b3a2ba7
         </div>
         <div class="card-body">
             <form action="{{ url('search') }}" method="get">
@@ -12,7 +16,11 @@
                         type="text"
                         name="q"
                         class="form-control"
+<<<<<<< HEAD
                         placeholder="Поиск..."
+=======
+                        placeholder="Search..."
+>>>>>>> 24d7a2775c7e5653a30afaa653f9fd357b3a2ba7
                         value="{{ request('q') }}"
                     />
                 </div>
@@ -26,7 +34,11 @@
                     </div>
                 </article>
             @empty
+<<<<<<< HEAD
                 <p>No products found</p>
+=======
+                <p>No articles found</p>
+>>>>>>> 24d7a2775c7e5653a30afaa653f9fd357b3a2ba7
             @endforelse
         </div>
     </div>
