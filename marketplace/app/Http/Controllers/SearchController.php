@@ -3,18 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Repository\ProductInterface;
+use App\Services\ProductService;
+use App\Services\Helper;
+
 
 
 
 class SearchController extends Controller
 {
+    // TODO: bind this in serviceProvider
+    public function __construct(Helper $helper)
+    {       
+        $this->helper = $helper;
+    }
+    
     public function search(ProductInterface $repository)
     {
-        $navMenu = $this->service->getNavMenu();
-
+        $navMenu = $this->helper->getNavMenu();
+        
         if (!empty(request('q')))
             $products = $repository->search(request('q'));
         else

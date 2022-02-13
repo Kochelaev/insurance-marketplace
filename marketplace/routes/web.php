@@ -18,19 +18,15 @@ use App\Repository\ProductInterface;
 |
 */
 
-Route::get('/', 'MainController@allProductsShow');
+Route::get('/', 'ProductController@allProductsShow');
 
-Route::get('/category/{id}', 'MainController@productsByCategoryShow');
+Route::get('/category/{id}', 'ProductController@productsByCategoryShow');
 
-Route::get('/type/{id}', 'MainController@productsByTypeShow');
+Route::get('/type/{id}', 'ProductController@productsByTypeShow');
 
 Route::get('/companys', 'MainController@allCompanyShow');
 
 Route::get('/company/{id}', 'MainController@allCompanyShow');
 
 Route::get('/search', 'SearchController@search');
-
-//Route::get('/search', 'SearchController@search')->name('web.search');
-
-Route::get('/test', 'MainController@test');
 

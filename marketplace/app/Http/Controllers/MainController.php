@@ -30,9 +30,5 @@ class MainController extends Controller
             ->with('navMenu', $this->service->getNavMenu());
     }
 
-    public function allCompanyShow()
-    {
-        $companys = User::where('company', '!=', null)->paginate(10);
-        dd($companys);
-    }    
+    
 }
