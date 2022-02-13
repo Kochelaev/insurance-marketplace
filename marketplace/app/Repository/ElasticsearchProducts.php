@@ -6,6 +6,7 @@ use App\Models\Product;
 use Elasticsearch\Client;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ElasticsearchProducts implements ProductInterface
 {
@@ -17,10 +18,17 @@ class ElasticsearchProducts implements ProductInterface
         $this->elasticsearch = $elasticsearch;
     }
 
-    public function search(string $query = ''): Collection
+    public function search(string $query = '', int $perPage = 10, int $currentPage = 1): LengthAwarePaginator
     {
         $items = $this->searchOnElasticsearch($query);
-        return $this->buildCollection($items);
+        $products = $this->buildCollection($items);
+
+        return new LengthAwarePaginator(
+            $products,
+            $products->count(),
+            $perPage,
+            $currentPage,
+        );
     }
 
     private function searchOnElasticsearch(string $query = ''): array
@@ -49,10 +57,5 @@ class ElasticsearchProducts implements ProductInterface
             ->sortBy(function ($article) use ($ids) {
                 return array_search($article->getKey(), $ids);
             });
-    }
-
-    public static function all()
-    {
-        return Product::all();
     }
 }

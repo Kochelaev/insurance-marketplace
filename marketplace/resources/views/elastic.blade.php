@@ -12,7 +12,7 @@
                         type="text"
                         name="q"
                         class="form-control"
-                        placeholder="Search..."
+                        placeholder="Поиск..."
                         value="{{ request('q') }}"
                     />
                 </div>
@@ -26,7 +26,7 @@
                     </div>
                 </article>
             @empty
-                <p>No articles found</p>
+                <p>No products found</p>
             @endforelse
         </div>
     </div>

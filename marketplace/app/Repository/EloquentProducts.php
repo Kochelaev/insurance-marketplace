@@ -4,19 +4,16 @@ namespace App\Repository;
 
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class EloquentProducts implements ProductInterface
 {
-    public function search(string $query = ''): Collection
+    public function search(string $query = ''): LengthAwarePaginator
     {
         return Product::query()
             ->where('title', 'like', "%{$query}%")
             ->orWhere('content', 'like', "%{$query}%")
-            ->get();
-    }
-
-    public static function all()
-    {
-        return Product::all();
-    }
+            ->paginate(10);
+    }  
+    
 }
