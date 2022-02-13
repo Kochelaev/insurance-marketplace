@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Services\Interfaces\SearchInterface;
-use App\Services\ProductsSql;
+
+
 
 class SearchProvider extends ServiceProvider
 {
