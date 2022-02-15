@@ -3,7 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Services\Service;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Repository\ProductInterface;
 

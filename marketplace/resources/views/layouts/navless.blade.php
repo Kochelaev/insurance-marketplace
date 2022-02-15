@@ -33,13 +33,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        @if(isset($navMenu))
-                            <li class="nav-item">
-                                <div class="btn-success container">                        
-                                    <a href="/companys" type="button" class="btn btn-success"> Компании </a>                        
-                                </div>
-                            </li>
-                        @endif
+                        <li class="nav-item">
+                            <div class="btn-success container">                        
+                                <a href="/companys" type="button" class="btn btn-success"> Компании </a>                        
+                            </div>
+                        </li>
+                    
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -47,22 +46,24 @@
                         
                         
                         <nav class="d-inline-flex mt-2 mt-md-2 ms-md-auto">
-                            @if (isset($navMenu))
-                                @while (current($navMenu))
-                                    <li class="nav-item">
-                                        <div class="btn-group container">
-                                            <a href="/category/{{current($navMenu)['id']}}" type="button" class="btn btn-primary">{{key($navMenu)}}</a>
-                                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-                                            </button>
-                                        <div class="dropdown-menu">      
-                                        @foreach (current($navMenu)['types'] as $subId => $subMenu)
-                                            <a class="dropdown-item" href="/type/{{$subId}}">{{$subMenu}}</a>        
-                                        @endforeach
-                                        @php next($navMenu) @endphp
-                                    </li>                          
-                                @endwhile
-                            @endif
-                        </nav>                     
+                            @while (current($navMenu))
+                                <li class="nav-item">
+                                    <div class="btn-group container">
+                                        <a href="/category/{{current($navMenu)['id']}}" type="button" class="btn btn-primary">{{key($navMenu)}}</a>
+                                        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                                        </button>
+                                    <div class="dropdown-menu">      
+                                    @foreach (current($navMenu)['types'] as $subId => $subMenu)
+                                        <a class="dropdown-item" href="/type/{{$subId}}">{{$subMenu}}</a>        
+                                    @endforeach
+                                    @php next($navMenu) @endphp
+                                </li>                          
+                            @endwhile                     
+                            
+                            
+                        </nav>
+                        
+                        
                         
                         <pre>  </pre>
                         <!-- Authentication Links -->

@@ -36,19 +36,11 @@
      </nav>
     </div>
 
-@if($errors->any())
-    <div class="alert-danger alert-danger">
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{$error}}</li>
-            @endforeach
-        </ul>        
-    </div>
-@endif
+
 
 
 <div class="container">
-@yield('main_content')
+@yield('content')
 </div>
 
 </body>

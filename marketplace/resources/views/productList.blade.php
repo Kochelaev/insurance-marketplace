@@ -1,6 +1,6 @@
-@extends('layout')
+@extends('layouts.app')
 
-    @section('main_content')    
+    @section('content')    
 
     <div class="container mb-4">
         <form action="{{ url('search') }}" method="get">
