@@ -42,4 +42,9 @@ class ProductController extends Controller
         ->with('navMenu', $this->helper->getNavMenu());
     }
 
+    public function productInfoShow($productId)
+    {
+        dd($productId);
+    }
+
 }

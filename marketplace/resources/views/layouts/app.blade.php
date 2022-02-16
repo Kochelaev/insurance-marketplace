@@ -35,7 +35,7 @@
                     <ul class="navbar-nav me-auto">
                         @if(isset($navMenu))
                             <li class="nav-item">
-                                <div class="btn-success container">                        
+                                <div class="btn-success container ml-3 pl-3">                        
                                     <a href="/companys" type="button" class="btn btn-success"> Компании </a>                        
                                 </div>
                             </li>
@@ -46,7 +46,7 @@
                     <ul class="navbar-nav ms-auto">
                         
                         
-                        <nav class="d-inline-flex mt-2 mt-md-2 ms-md-auto">
+                        
                             @if (isset($navMenu))
                                 @while (current($navMenu))
                                     <li class="nav-item">
@@ -62,7 +62,7 @@
                                     </li>                          
                                 @endwhile
                             @endif
-                        </nav>                     
+                        
                         
                         <pre>  </pre>
                         <!-- Authentication Links -->
