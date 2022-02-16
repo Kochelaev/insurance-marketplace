@@ -6,9 +6,6 @@ use App\Models\Product;
 use App\Repository\ProductInterface;
 use App\Services\Helper;
 
-
-
-
 class SearchController extends Controller
 {
     // TODO: bind this in serviceProvider

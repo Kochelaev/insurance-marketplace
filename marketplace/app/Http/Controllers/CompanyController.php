@@ -23,9 +23,7 @@ class CompanyController extends Controller
     {
         $navMenu = $this->helper->getNavMenu();
 
-        $companys = $this->companyService->getAllCompanys();
-        // dd($companys);
-        
+        $companys = $this->companyService->getAllCompanys();       
         return view('companyList', compact('companys'))
             ->with('navMenu', $navMenu);
     }
