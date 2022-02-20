@@ -18,4 +18,14 @@ class ProductService
     {
         return Category::find($categoryId)->products()->paginate(10);
     }
+
+    public function getAllProducts()
+    {
+        return Product::paginate(10);
+    }
+
+    public function getProductById(int $productId)
+    {
+        return Product::find($productId);
+    }
 }

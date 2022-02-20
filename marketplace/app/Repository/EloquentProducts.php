@@ -14,6 +14,5 @@ class EloquentProducts implements ProductInterface
             ->where('title', 'like', "%{$query}%")
             ->orWhere('content', 'like', "%{$query}%")
             ->paginate(10);
-    }  
-    
+    }    
 }

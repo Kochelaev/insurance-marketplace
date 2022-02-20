@@ -17,4 +17,9 @@ class Product extends Model
     {
         return $this->belongsTo(User::class, 'owner_id', 'id');
     }
+
+    public function type()
+    {
+        return $this->belongsTo(Type::class, 'type_id', 'id');
+    }    
 }

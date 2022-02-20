@@ -7,6 +7,7 @@ use App\Services\ProductService;
 use App\Services\Helper;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {   
@@ -23,7 +24,7 @@ class ProductController extends Controller
     
     public function allProductsShow()
     {
-        $products = Product::paginate(10);       
+        $products = $this->productService->getAllProducts();    
         return view('productList', compact('products'))
             ->with('navMenu', $this->helper->getNavMenu());
     }
@@ -44,8 +45,12 @@ class ProductController extends Controller
 
     public function productInfoShow($productId)
     {
-        if (auth()->user()) return 'вы зарегистрированы';
-        else return 'вы не зарегистрированы';
+        //возможно можно реализовать красивее через middleware
+        $product = $this->productService->getProductById($productId);
+        if (Auth()->user()) $view = 'user.productShow';
+        else $view = 'productShow';
+            return view($view, compact('product'))
+            ->with('navMenu', $this->helper->getNavMenu());        
     }
 
 }
