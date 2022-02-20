@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3"
 services:
   app:
     build:
@@ -65,9 +65,24 @@ services:
         soft: -1
     cap_add:
       - IPC_LOCK
+
+  redis:
+    container_name: marketplace-redis
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - './.docker/redis:/data'
+    networks:
+      - marketplace
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      retries: 3
+      timeout: 5s
 networks:
   marketplace:
     driver: bridge
+
 
 
 
