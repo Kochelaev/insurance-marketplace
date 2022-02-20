@@ -1,6 +1,8 @@
 <?php
 
-//use Illuminate\Support\Facades\Auth;
+
+
+use Elasticsearch\Client;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,3 +25,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/callbackRequest', 'MessageController@callbackRequest')->name('callbackRequest');
+
+Route::get('/test' , function (Client $client) {
+    
+    dd($client);
+});
