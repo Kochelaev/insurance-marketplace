@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+@php
+$cities = App\Models\City::all();
+@endphp
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -112,13 +115,21 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="city" class="col-md-4 col-form-label text-md-end">{{ __('Город') }}</label>
+                        @if($cities)
+                            <div class="row mb-3">
+                                <label for="city_id" class="col-md-4 col-form-label text-md-end">{{ __('Город') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="city" type="text" class="form-control" name="city">
+                                <div class="col-md-6">
+                                    {{-- <input id="city" type="text" class="form-control" name="city"> --}}
+                                    
+                                    <select name="city_id" class="form-control"> 
+                                        @foreach ($cities as $city)
+                                        <option value="{{$city->id}}">{{$city->city}}</option> 
+                                        @endforeach                                        
+                                    </select>
+                                </div>
                             </div>
-                        </div>
+                        @endif
 
                         <div class="row mb-3">
                             <label for="adress" class="col-md-4 col-form-label text-md-end">{{ __('Адресс') }}</label>

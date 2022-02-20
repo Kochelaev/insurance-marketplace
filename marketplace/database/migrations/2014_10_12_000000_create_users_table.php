@@ -14,11 +14,10 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            //$table->string('name');  //логин для регистрации
-            $table->string('lastname')->nullable();             //
-            $table->string('firstname')->nullable();            //  Убрать nulable позже
-            $table->string('middlename')->nullable();           //
+            $table->id();            
+            $table->string('lastname')->nullable();             
+            $table->string('firstname')->nullable();            //  Убрать лишние nulable позже
+            $table->string('middlename')->nullable();           
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -27,11 +26,14 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('logo')->nullable();
             $table->date('birthdate')->nullable();
-            $table->string('city')->nullable();
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->string('adress')->nullable();
             $table->timestamps();
 
             $table->softDeletes();
+
+            $table->index('city_id', 'user_city_idx');
+            $table->foreign('city_id', 'user_city_fk')->on('cities')->references('id');
         });
     }
 

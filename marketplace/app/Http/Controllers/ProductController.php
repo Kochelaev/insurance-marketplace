@@ -44,7 +44,8 @@ class ProductController extends Controller
 
     public function productInfoShow($productId)
     {
-        dd($productId);
+        if (auth()->user()) return 'вы зарегистрированы';
+        else return 'вы не зарегистрированы';
     }
 
 }

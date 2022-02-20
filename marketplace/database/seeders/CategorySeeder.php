@@ -22,6 +22,6 @@ class CategorySeeder extends Seeder
                 ['category' => 'Недвижимость'],
                 ['category' => 'Здоровье'],
             ))
-             ->create();
+            ->create();
     }
 }
