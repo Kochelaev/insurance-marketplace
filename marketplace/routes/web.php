@@ -4,6 +4,7 @@
 
 use Elasticsearch\Client;
 use Illuminate\Support\Facades\Route;
+//use Illuminate\Support\Facades\Redis;
 
 
 Route::get('/', 'ProductController@allProductsShow');
@@ -28,5 +29,7 @@ Route::post('/callbackRequest', 'MessageController@callbackRequest')->name('call
 
 Route::get('/test' , function (Client $client) {
     
-    dd($client);
+    //Redis::set('name', 'Artem');
+    return Redis::get('name');
+    
 });
