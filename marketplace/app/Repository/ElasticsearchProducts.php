@@ -40,7 +40,7 @@ class ElasticsearchProducts implements ProductInterface
             'body' => [
                 'query' => [
                     'multi_match' => [
-                        'fields' => ['title^2', 'content'],
+                        'fields' => ['title^5', 'content^3'],
                         'query' => $query,
                     ],
                 ],

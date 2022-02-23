@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
-{   
+{
     // TODO: bind this in serviceProvider
     public $productService;
     public $helper;
@@ -21,10 +21,10 @@ class ProductController extends Controller
         $this->helper = $helper;
     }
 
-    
+
     public function allProductsShow()
     {
-        $products = $this->productService->getAllProducts();    
+        $products = $this->productService->getAllProducts();
         return view('productList', compact('products'))
             ->with('navMenu', $this->helper->getNavMenu());
     }
@@ -33,14 +33,14 @@ class ProductController extends Controller
     {
         $products = $this->productService->getProductsByCategory($categoryId);
         return view('productList', compact('products'))
-        ->with('navMenu', $this->helper->getNavMenu());
+            ->with('navMenu', $this->helper->getNavMenu());
     }
 
     public function productsByTypeShow($typeId)
     {
         $products = $this->productService->getProductsByType($typeId);
         return view('productList', compact('products'))
-        ->with('navMenu', $this->helper->getNavMenu());
+            ->with('navMenu', $this->helper->getNavMenu());
     }
 
     public function productInfoShow($productId)
@@ -48,9 +48,10 @@ class ProductController extends Controller
         //возможно можно реализовать красивее через middleware
         $product = $this->productService->getProductById($productId);
         if (Auth()->user()) $view = 'user.productShow';
-        else $view = 'productShow';
-            return view($view, compact('product'))
-            ->with('navMenu', $this->helper->getNavMenu());        
+        else $view = 'productShow';        
+        
+        return view($view, compact('product'))
+            ->with('navMenu', $this->helper->getNavMenu())
+            ->with('viewsCount', $this->productService->getViewsCount($productId));
     }
-
 }

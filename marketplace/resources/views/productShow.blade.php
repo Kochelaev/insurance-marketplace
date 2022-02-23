@@ -24,4 +24,6 @@
     </div>
 </div>
 
+{{__('Просмотров:')}} {{$viewsCount}}
+
 @endsection

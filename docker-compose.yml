@@ -45,6 +45,7 @@ services:
   redis:
     container_name: marketplace-redis
     image: redis:alpine
+    restart: unless-stopped
     ports:
       - '6379:6379'
     volumes:
@@ -58,7 +59,9 @@ services:
 
 
   search:
+    container_name: marketplace-search
     image: elasticsearch:6.8.1
+    restart: unless-stopped
     environment:
       - "discovery.type=single-node"
       - "bootstrap.memory_lock=true"
@@ -70,34 +73,3 @@ services:
 networks:
   marketplace:
     driver: bridge
-
-
-
-
-
-
-    # elastic:    
-  #   container_name: marketplace-elastic    
-  #   restart: unless-stopped
-  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
-  #   environment:
-  #     - discovery.type=single-node
-  #     - xpack.security.enabled=false
-  #     - bootstrap.memory_lock=true
-  #     - network.bind_host=0.0.0.0
-  #     - ES_JAVA_OPTS=-Xms512m -Xmx512m
-  #   volumes:
-  #     - './.docker/elastic/:/usr/share/elasticsearch/data'
-  #     - './.docker/elastc/logs:/usr/share/elasticsearch/logs'
-  #   networks:
-  #     - marketplace
-  #   ports:
-  #     - "9200:9200"
-  #     - "9300:9300"
-  #   ulimits:
-  #     memlock:
-  #       hard: -1
-  #       soft: -1
-  #   cap_add:
-  #     - IPC_LOCK
-  #   driver: bridge
