@@ -14,10 +14,6 @@ class MessageController extends Controller
             auth()->user()->id,
             $request->get('companyId'),
             $request->get('productId')
-        );
-        // $userId = auth()->user()->id;
-        // dump ($userId);
-        // $compnyId = $request->get('companyId');
-        // dd ($compnyId);
+        );       
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Helper;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redis;
 
@@ -24,5 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/callbackRequest', 'MessageController@callbackRequest')->name('callbackRequest');
 
 Route::get('/test', function () {    
-    return 0;
+   Helper::getNavMenu();
 });
