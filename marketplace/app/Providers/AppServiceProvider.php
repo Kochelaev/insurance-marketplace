@@ -29,9 +29,9 @@ class AppServiceProvider extends ServiceProvider
             return new ProductService();
         });
 
-        // $this->app->singleton(Helper::class, function ($app) {
-        //     return new Helper();
-        // });
+        $this->app->singleton(Helper::class, function ($app) {
+            return new Helper();
+        });
     }
 
     /**
