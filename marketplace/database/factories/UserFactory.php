@@ -18,11 +18,10 @@ class UserFactory extends Factory
            
             'lastname' => $this->faker->lastName(),
             'firstname' => $this->faker->firstName(),
-            'middlename' => $this->faker->middleName(),
-            ''
+            'middlename' => $this->faker->middleName(),            
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 
             'remember_token' => Str::random(10),
             
         ];
@@ -48,6 +47,15 @@ class UserFactory extends Factory
             return [
                 'company' => $this->faker->company(),
                 'role' => 'C',
+            ];
+        });
+    }
+
+    public function itAdmin()
+    {
+        return $this->state(function () {
+            return [                
+                'role' => 'A',
             ];
         });
     }
