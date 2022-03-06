@@ -34,6 +34,18 @@ class ProductService
     {
         $key = 'ProductViews' . $productId;
         Redis::setnx($key, 0);
+        return Redis::get($key);
+    }
+
+    public function incrementViewsCount($productId)
+    {
+        $key = 'ProductViews' . $productId;
+        Redis::setnx($key, 0);
         return Redis::incr($key);
+    }
+
+    public function wipeAllViewsCount()
+    {
+        Redis::flushdb();
     }
 }

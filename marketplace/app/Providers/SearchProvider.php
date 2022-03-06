@@ -20,8 +20,10 @@ class SearchProvider extends ServiceProvider
     public function register()
     {
 
-        $this->app->bind(ProductInterface::class, function ($app) {
-                
+        $this->app->bind(
+            ProductInterface::class,
+            function ($app) {
+
                 if (!config('services.search.enabled')) {
                     return new EloquentProducts;
                 }
@@ -41,7 +43,7 @@ class SearchProvider extends ServiceProvider
             return ClientBuilder::create()
                 ->setHosts($app['config']->get('services.search.hosts'))
                 ->build();
-        });        
+        });
     }
 
     /**

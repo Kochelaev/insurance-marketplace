@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\SearchProvider::class,
         App\Providers\MessageProvider::class,
+        App\Providers\RoleProvider::class,
 
     ],
 

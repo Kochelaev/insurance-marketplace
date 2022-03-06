@@ -47,7 +47,7 @@ class ProductController extends Controller
         //возможно можно реализовать красивее через middleware
         $product = $this->productService->getProductById($productId);
         if (Auth()->user()) $view = 'user.productShow';
-        else $view = 'productShow';        
+        else $view = 'productShow';
         
         return view($view, compact('product'))
             ->with('navMenu', $this->helper->getNavMenu())

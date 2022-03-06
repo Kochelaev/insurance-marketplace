@@ -54,8 +54,8 @@ class ElasticsearchProducts implements ProductInterface
         $ids = Arr::pluck($items['hits']['hits'], '_id');
 
         return Product::findMany($ids)
-            ->sortBy(function ($article) use ($ids) {
-                return array_search($article->getKey(), $ids);
+            ->sortBy(function ($product) use ($ids) {
+                return array_search($product->getKey(), $ids);
             });
     }
 }
