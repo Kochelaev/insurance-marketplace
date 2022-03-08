@@ -13,6 +13,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,27 +23,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    
-    <!--Get User role -->
-@php
-    if (Auth::check()){        
-        switch ($role = Auth::user()->role) {
-            case 'A':
-                $home = 'admin.home';
-                break;
-                case 'U':
-                $home = 'admin.home';
-                break;
-                case 'C':
-                $home = 'admin.home';
-                break;            
-            default:
-                $home = 'home';
-                break;
-        }
-    }
-@endphp
-    
+        
 </head>
 <body>
     <div id="app">
@@ -59,7 +42,7 @@
                         @if(isset($navMenu))
                             <li class="nav-item">
                                 <div class="btn-success container ml-3 pl-3">                        
-                                    <a href="/companys" type="button" class="btn btn-success"> Компании </a>                        
+                                    <a href="/companys" class="btn btn-success"> Компании </a>                        
                                 </div>
                             </li>
                         @endif
@@ -72,20 +55,22 @@
                                 @while (current($navMenu))
                                     <li class="nav-item">
                                         <div class="btn-group container">
-                                            <a href="/category/{{current($navMenu)['id']}}" type="button" class="btn btn-primary">{{key($navMenu)}}</a>
+                                            <a href="/category/{{current($navMenu)['id']}}" class="btn btn-primary">{{key($navMenu)}}
+                                            </a>
                                             <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
                                             </button>
-                                        <div class="dropdown-menu">      
-                                        @foreach (current($navMenu)['types'] as $subId => $subMenu)
-                                            <a class="dropdown-item" href="/type/{{$subId}}">{{$subMenu}}</a>        
-                                        @endforeach
-                                        @php next($navMenu) @endphp
+                                            <div class="dropdown-menu">      
+                                                @foreach (current($navMenu)['types'] as $subId => $subMenu)
+                                                    <a class="dropdown-item" href="/type/{{$subId}}">{{$subMenu}}</a>        
+                                                @endforeach
+                                                @php next($navMenu) @endphp
+                                            </div>
+                                        </div>
                                     </li>                          
                                 @endwhile
-                            @endif
+                            @endif               
                         
-                        
-                        <pre>  </pre>
+                        {{-- <pre>  </pre> --}}
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -123,7 +108,7 @@
                                         @csrf
                                     </form>
 
-                                    <form id="home-form" action="{{ route($home) }}" method="GET" class="d-none">                                        
+                                    <form id="home-form" action="{{ route('home') }}" method="GET" class="d-none">                                        
                                     </form>
                                 </div>
                             </li>

@@ -15,20 +15,21 @@
         </a>
 
       
-     <nav class="d-inline-flex mt-2 mt-md-2 ms-md-auto">
-      @while (current($navMenu))
-      <div class="btn-group container">
-        <a href="/category/{{current($navMenu)['id']}}" type="button" class="btn btn-primary">{{key($navMenu)}}</a>
-        <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
-        </button>
-        <div class="dropdown-menu">      
-      @foreach (current($navMenu)['types'] as $subId => $subMenu)
-        <a class="dropdown-item" href="/type/{{$subId}}">{{$subMenu}}</a>        
-          @endforeach
-        @php next($navMenu) @endphp 
-      </div>
-    </div>
-      @endwhile
+      <nav class="d-inline-flex mt-2 mt-md-2 ms-md-auto">
+        @while (current($navMenu))
+          <div class="btn-group container">
+            <a href="/category/{{current($navMenu)['id']}}" type="button" class="btn btn-primary">{{key($navMenu)}}
+            </a>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+             </button>
+            <div class="dropdown-menu">      
+              @foreach (current($navMenu)['types'] as $subId => $subMenu)
+                <a class="dropdown-item" href="/type/{{$subId}}">{{$subMenu}}</a>        
+              @endforeach
+              @php next($navMenu) @endphp 
+            </div>
+          </div>
+        @endwhile
     <div class="btn-success">
       <a href="/companys" type="button" class="btn btn-success"> Компании </a>
     </div>

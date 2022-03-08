@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Services\ProductService;
 use App\Services\Helper;
 
-
-
 class ProductController extends Controller
-{
-    // TODO: bind this in serviceProvider
+{    
     public $productService;
     public $helper;
 

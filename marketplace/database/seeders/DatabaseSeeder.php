@@ -18,11 +18,11 @@ class DatabaseSeeder extends Seeder
             TypeSeeder::class,
             CitySeeder::class,
             AdminSeeder::class,            
-            TestCompanySeeder::class,
-            TestUserSeeder::class,
             CompanySeeder::class,
             ProductSeeder::class,
             UserSeeder::class,
+            TestCompanySeeder::class,
+            TestUserSeeder::class,
         ]);
     }
 }
