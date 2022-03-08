@@ -9,6 +9,6 @@ class AuthUser extends RoleController
 {
     public function home()
     {
-        return 'User';
+        return view('user.home');
     }
 }

@@ -9,6 +9,6 @@ class Company extends RoleController
 {
     public function home()
     {
-        return 'Company';
+        return view('company.home');
     }
 }

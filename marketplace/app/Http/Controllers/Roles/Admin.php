@@ -9,6 +9,6 @@ class Admin extends RoleController
 {
     public function home()
     {
-        return 'admin';
+        return view('admin.home');
     }
 }

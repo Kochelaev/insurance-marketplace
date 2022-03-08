@@ -31,6 +31,6 @@ class CompanyController extends Controller
     public function companyShow($companyId)
     {
         $companys = User::where('company', '!=', null)->paginate(10);
-        dd($companyId);
+        dd($companyId);                                                 //!!!!!!
     }
 }

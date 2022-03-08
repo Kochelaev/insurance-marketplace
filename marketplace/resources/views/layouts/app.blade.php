@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -18,6 +20,27 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
+    <!--Get User role -->
+@php
+    if (Auth::check()){        
+        switch ($role = Auth::user()->role) {
+            case 'A':
+                $home = 'admin.home';
+                break;
+                case 'U':
+                $home = 'admin.home';
+                break;
+                case 'C':
+                $home = 'admin.home';
+                break;            
+            default:
+                $home = 'home';
+                break;
+        }
+    }
+@endphp
+    
 </head>
 <body>
     <div id="app">
@@ -43,9 +66,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        
-                        
+                    <ul class="navbar-nav ms-auto">                       
                         
                             @if (isset($navMenu))
                                 @while (current($navMenu))
@@ -102,8 +123,7 @@
                                         @csrf
                                     </form>
 
-                                    <form id="home-form" action="{{ route('home') }}" method="GET" class="d-none">
-                                        @csrf
+                                    <form id="home-form" action="{{ route($home) }}" method="GET" class="d-none">                                        
                                     </form>
                                 </div>
                             </li>

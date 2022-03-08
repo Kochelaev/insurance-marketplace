@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
-use function PHPUnit\Framework\returnSelf;
+Auth::routes();
 
-Route::get('/', 'ProductController@allProductsShow');
+Route::get('/', 'ProductController@allProductsShow')->name('index');
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/category/{id}', 'ProductController@productsByCategoryShow');
 
@@ -15,27 +18,25 @@ Route::get('/product/{id}', "ProductController@productInfoShow");
 
 Route::get('/companys', 'CompanyController@allCompanysShow');
 
-Route::get('/company/{id}', 'CompanyController@companyShow');
+Route::get('/companys/{id}', 'CompanyController@companyShow');
 
 Route::get('/search', 'SearchController@search');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::post('/callbackRequest', 'MessageController@callbackRequest')->name('callbackRequest');
 
+Route::group(['namespace' => 'Roles', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::get('/', 'Admin@home')->name('admin.home');
+});
 
+Route::group(['namespace' => 'Roles', 'prefix' => 'company', 'middleware' => 'company'], function () {
+    Route::get('/', 'Company@home')->name('company.home');
+});
 
-Route::get('/test', 'RoleController@home');
+Route::group(['namespace' => 'Roles', 'prefix' => 'user', 'middleware' => 'user'], function () {
+    Route::get('/', 'AuthUser@home')->name('user.home');
+});
 
-Route::get('/test1', function () {
-    if (empty(Auth()->user()->role))
-        return 'Goest';
-    else {
-        $role = Auth()->user()->role;
-        if ($role == 'A') return  'Admin';
-        if ($role == 'U') return  'AuthUser';
-        if ($role == 'C') return  'Company';
-    }
+Route::get('/test', 'ProductController@productInfoShow');
+
+Route::get('/test1', function (Request $request) {
 });
