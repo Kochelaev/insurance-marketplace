@@ -11,4 +11,24 @@ class AuthUser extends RoleController
     {
         return view('user.home');
     }
+
+    public function orders()
+    {
+        return view('user.orders');
+    }
+
+    public function autos()
+    {
+        return view('user.autos');
+    }
+
+    public function houses()
+    {
+        return view('user.houses');
+    }
+
+    public function callback()
+    {
+        return view('user.callback');
+    }
 }

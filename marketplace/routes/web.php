@@ -38,6 +38,10 @@ Route::group(['namespace' => 'Roles', 'prefix' => 'company', 'middleware' => 'co
 
 Route::group(['namespace' => 'Roles', 'prefix' => 'user', 'middleware' => 'user'], function () {
     Route::get('/', 'AuthUser@home')->name('user.home');
+    Route::get('/orders', 'AuthUser@orders')->name('user.orders');
+    Route::get('/autos', 'AuthUser@autos')->name('user.autos');
+    Route::get('/houses', 'AuthUser@houses')->name('user.houses');
+    Route::get('/callback', 'AuthUser@callback')->name('user.callback');
 });
 
 Route::get('/test', function (Request $request) {
