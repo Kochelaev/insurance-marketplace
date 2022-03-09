@@ -15,7 +15,7 @@
                         </div>
                     @endif
 
-                    {{ __('Ты админ') }}
+                    {{ __('companys') }}
                 </div>
             </div>
         </div>

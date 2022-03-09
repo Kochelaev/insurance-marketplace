@@ -23,12 +23,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    
+    
+   
+    
         
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            
+            @yield('button')
+
             <div class="container">
+                
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ __('Застрахуй братуху') }}
                 </a>
@@ -38,12 +47,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    
                     <ul class="navbar-nav me-auto">
                         @if(isset($navMenu))
                             <li class="nav-item">
-                                <div class="btn-success container ml-3 pl-3">                        
-                                    <a href="/companys" class="btn btn-success"> Компании </a>                        
-                                </div>
+                                {{-- <div class="btn-success container ml-3 pl-3 purpl">                         --}}
+                                    <a href="/companys" class="btn btn-primary"> Компании </a>                        
+                                {{-- </div> --}}
                             </li>
                         @endif
                     </ul>
@@ -68,9 +78,8 @@
                                         </div>
                                     </li>                          
                                 @endwhile
-                            @endif               
+                            @endif                                       
                         
-                        {{-- <pre>  </pre> --}}
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -138,9 +147,9 @@
         </div>
     @endif
 
-        <main class="container mt-4">
+        {{-- <main class="container mt-4"> --}}
             @yield('content')
-        </main>
+        {{-- </main> --}}
     </div>
 </body>
 </html>

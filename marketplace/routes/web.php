@@ -26,6 +26,10 @@ Route::post('/callbackRequest', 'MessageController@callbackRequest')->name('call
 
 Route::group(['namespace' => 'Roles', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/', 'Admin@home')->name('admin.home');
+    Route::get('/users', 'Admin@users')->name('admin.users');
+    Route::get('/companys', 'Admin@companys')->name('admin.companys');
+    Route::get('/callback', 'Admin@callback')->name('admin.callback');
+    Route::get('/mail', 'Admin@mail')->name('admin.mail');
 });
 
 Route::group(['namespace' => 'Roles', 'prefix' => 'company', 'middleware' => 'company'], function () {
@@ -36,7 +40,6 @@ Route::group(['namespace' => 'Roles', 'prefix' => 'user', 'middleware' => 'user'
     Route::get('/', 'AuthUser@home')->name('user.home');
 });
 
-Route::get('/test', 'ProductController@productInfoShow');
-
-Route::get('/test1', function (Request $request) {
+Route::get('/test', function (Request $request) {
+    return view('template.admin');
 });

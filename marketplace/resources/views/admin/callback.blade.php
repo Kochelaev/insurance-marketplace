@@ -15,7 +15,7 @@
                         </div>
                     @endif
 
-                    {{ __('Ты админ') }}
+                    {{ __('callback') }}
                 </div>
             </div>
         </div>
