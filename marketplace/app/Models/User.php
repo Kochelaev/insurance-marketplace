@@ -30,6 +30,8 @@ class User extends Authenticatable
         'company',
         'city_id',
         'adress',
+        'INN',
+        'role',
     ];
 
     /**

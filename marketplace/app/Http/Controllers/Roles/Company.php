@@ -11,4 +11,19 @@ class Company extends RoleController
     {
         return view('company.home');
     }
+
+    public function products()
+    {
+        return view('company.products');
+    }
+
+    public function orders()
+    {
+        return view('company.orders');
+    }
+
+    public function callback()
+    {
+        return view('company.callback');
+    }
 }

@@ -37,6 +37,11 @@ class ProductService
         return Redis::get($key);
     }
 
+    public function getProductsByCompany($companyId)
+    {
+        return Product::where('owner_id', $companyId)->paginate(10);
+    }    
+
     public function incrementViewsCount($productId)
     {
         $key = 'ProductViews' . $productId;

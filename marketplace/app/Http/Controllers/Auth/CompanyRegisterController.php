@@ -9,14 +9,15 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class RegisterController extends Controller
+
+class CompanyRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
-    | Register Controller
+    | CompanyRegister Controller
     |--------------------------------------------------------------------------
     |
-    | This controller handles the registration of new users as well as their
+    | This controller handles the registration of new companys as well as their
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
@@ -49,8 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            //'name' => ['required', 'string', 'max:255'],
+        return Validator::make($data, [            
             'lastname' => ['required', 'string', 'max:255'],
             'firstname' => ['required', 'string', 'max:255'],
             'middlename' => ['required', 'string', 'max:255'],
@@ -78,8 +78,18 @@ class RegisterController extends Controller
             'city_id' => $data['city_id'],
             'phone' => $data['phone'],
             'adress' => $data ['adress'],
+            'company' => $data['company'],
+            'INN' => $data['INN'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role' => 'C',
         ]);
     }
+
+    public function showRegistrationForm()
+    {
+        return view('auth.companyRegister');
+    }
+
+
 }

@@ -16,7 +16,7 @@
             <a href = '/product/{{$product->id}}'>
                 <div class="alert alert-primary">            
                     <div class = "lead text-left">
-                        {{-- {{$product->id}}  --}}
+                        <p>{{$product->type->type}}</p>
                         {{$product->title}} 
                     </div>
                     <div>{{$product->company->company}}</div>

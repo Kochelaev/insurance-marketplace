@@ -4,17 +4,14 @@
 @php
 $cities = App\Models\City::all();
 @endphp
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">
-                    {{ __('Регистрация') }}                       
-                </div>
+                <div class="card-header">{{ __('Регистрация') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('companyRegister') }}">
                         @csrf
 
                         {{-- <div class="row mb-3">
@@ -76,7 +73,13 @@ $cities = App\Models\City::all();
                             </div>
                         </div>
 
-                            {{-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! --}}
+                        <div class="row mb-3">
+                            <label for="company" class="col-md-4 col-form-label text-md-end">{{ __('Компания') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="company" type="text" class="form-control" name="company">
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="lastname" class="col-md-4 col-form-label text-md-end">{{ __('Фамилия') }}</label>
@@ -142,22 +145,30 @@ $cities = App\Models\City::all();
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="adress" class="col-md-4 col-form-label text-md-end">{{ __('ИНН') }}</label>
+                            
+                            <div class="col-md-6">
+                                <input id="INN" type="text" class="form-control" name="INN">
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Зарегистрироваться') }}
+                                    {{ __('Зарегистрировать компанию') }}
                                 </button>
                             </div>
                         </div>
 
-                        @if (Route::has('companyRegister'))
-                            <div class="row mt-2">
-                                <a href="{{ route('companyRegister') }}" style="color: blue">
-                                    <u>{{ __('Зарегистрировать компанию') }}</u>
-                                </a>
-                            </div>
+                        @if (Route::has('register'))
+                        <div class="row mt-2">
+                            <a href="{{ route('register') }}" style="color: blue">
+                                <u>{{ __('Зарегистрировать пользователя') }}</u>
+                            </a>
+                        </div>
                         @endif
-                        
+
                     </form>
                 </div>
             </div>

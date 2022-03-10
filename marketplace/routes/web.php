@@ -3,8 +3,14 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\FuncCall;
 
 Auth::routes();
+
+Route::group(['namespace' => 'Auth'] , function(){
+    Route::get('/companyregister', 'CompanyRegisterController@showRegistrationForm')->name('companyRegister');
+    Route::post('/companyregister', 'CompanyRegisterController@register');
+});
 
 Route::get('/', 'ProductController@allProductsShow')->name('index');
 
@@ -34,6 +40,9 @@ Route::group(['namespace' => 'Roles', 'prefix' => 'admin', 'middleware' => 'admi
 
 Route::group(['namespace' => 'Roles', 'prefix' => 'company', 'middleware' => 'company'], function () {
     Route::get('/', 'Company@home')->name('company.home');
+    Route::get('/products', 'Company@home')->name('company.products');
+    Route::get('/orders', 'Company@home')->name('company.orders');
+    Route::get('/callback', 'Company@home')->name('company.callback');
 });
 
 Route::group(['namespace' => 'Roles', 'prefix' => 'user', 'middleware' => 'user'], function () {
@@ -45,5 +54,5 @@ Route::group(['namespace' => 'Roles', 'prefix' => 'user', 'middleware' => 'user'
 });
 
 Route::get('/test', function (Request $request) {
-    return view('template.admin');
+    
 });
