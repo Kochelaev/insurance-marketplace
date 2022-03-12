@@ -7,8 +7,6 @@ use App\Services\CompanyService;
 use App\Services\ProductService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use phpDocumentor\Reflection\Types\Null_;
 
 class Company extends RoleController
 {
@@ -23,10 +21,27 @@ class Company extends RoleController
         $this->userService = new UserService;
     }
 
-
     public function home()
     {
-        return view('company.home');
+        $companyId = $this->userService->getAuthId();
+        $profile = $this->userService->getCompanyProfile($companyId);
+        return view('company.home', compact('profile'));
+    }
+
+    public function CompanyProfileUpdateForm()
+    {
+        $companyId = $this->userService->getAuthId();
+        $profile = $this->userService->getCompanyProfile($companyId);
+        return view('company.profileUpdateForm', compact('profile'));
+    }
+
+    public function CompanyProfileUpdate(Request $request)
+    {      
+        //добавить валидацию и проверку пароля
+        $companyId = $this->userService->getAuthId();
+        $company = $this->companyService->getCompanyById($companyId);
+        $company->update($request->except('_token'));
+        return redirect('home');
     }
 
     public function products()
@@ -37,14 +52,13 @@ class Company extends RoleController
     }
 
     public function productDelete($productId)
-    {
-        //проверка хозяина
+    {     
+        //проверка владельца
         $ownerId = $this->productService->getProductOwnerId($productId);
         if ($ownerId === $this->userService->getAuthId()) {
             $this->productService->DeleteProduct($productId);
             $error = null;
-        }
-        else{
+        } else {
             $error = ['msg' => 'недостаточно прав'];
         }
         return redirect()->back()->withErrors($error);
@@ -58,8 +72,8 @@ class Company extends RoleController
     }
 
     public function productRestore($productId)
-    {
-        //проверка хозяина
+    {      
+        //проверка владельца
         $ownerId = $this->productService->getTrashProductOwnerId($productId);
         if ($ownerId === $this->userService->getAuthId()) {
             $this->productService->RestoreProductById($productId);

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 Auth::routes();
 
-Route::group(['namespace' => 'Auth'] , function(){
+Route::group(['namespace' => 'Auth'], function () {
     Route::get('/companyregister', 'CompanyRegisterController@showRegistrationForm')->name('companyRegister');
     Route::post('/companyregister', 'CompanyRegisterController@register');
 });
@@ -58,20 +58,24 @@ Route::get('/test', function (Request $request) {
 });
 
 Route::group(['namespace' => 'Roles', 'prefix' => 'company', 'middleware' => 'company'], function () {
-    
+
     Route::get('/', 'Company@home')->name('company.home');
     Route::get('/products', 'Company@products')->name('company.products');
-    
-    Route::name('company.products.')->prefix('products')->group(function(){        
+    Route::name('company.profile.')->prefix('profile')->group(function () {
+        Route::get('/edit', 'Company@CompanyProfileUpdateForm')->name('updateForm');
+        Route::post('/edit', 'Company@CompanyProfileUpdate')->name('update');
+    });
+
+    Route::name('company.products.')->prefix('products')->group(function () {
         Route::get('/create', 'Company@productCreateForm')->name('createForm');
         Route::post('/create', 'Company@productCreate')->name('create');
         Route::get('/edit/{id}', 'Company@productUpdateForm')->name('updateForm');
         Route::post('/edit/{id}', 'Company@productUpdate')->name('update');
         Route::post('/delete/{id}', 'Company@productDelete')->name('delete');
-        Route::get('/restore', 'Company@productRestoreForm')->name('restorForm'); 
+        Route::get('/restore', 'Company@productRestoreForm')->name('restorForm');
         Route::post('/restore/{id}', 'Company@productRestore')->name('restore');
     });
-    
+
     Route::get('/orders', 'Company@orders')->name('company.orders');
     Route::get('/callback', 'Company@callback')->name('company.callback');
 });
