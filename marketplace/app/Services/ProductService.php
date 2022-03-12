@@ -25,7 +25,7 @@ class ProductService
         return Product::paginate(10);
     }
 
-    public function getProductById(int $productId)
+    public function getProductById($productId)
     {
         return Product::find($productId);
     }
@@ -37,11 +37,49 @@ class ProductService
         return Redis::get($key);
     }
 
-    public function getProductsByCompany($companyId)
+    public function getProductsByCompanyId($companyId)
     {
         return Product::where('owner_id', $companyId)->paginate(10);
-    }    
+    }
 
+    public function getTrashProductByCompanyId($companyId)
+    {
+        return Product::onlyTrashed()
+        ->where('owner_id', $companyId)
+        ->paginate(10);
+    }
+
+    public function getTrashProductOwnerId($productId)
+    {
+        $product = Product::onlyTrashed()
+        ->find($productId);
+        return $product->owner_id;
+    }
+    
+    public function RestoreProductById($productId)
+    {
+        $product = Product::onlyTrashed()
+        ->find($productId);
+        $product->restore();
+    }
+
+    public function getCategoryByProduct($productId)
+    {
+        $product = Product::find($productId);
+        return Category::find($product->type->category_id)->category;
+    }
+
+    public function getProductOwnerId($productId)
+    {
+        $product = Product::find($productId);
+        return $product->owner_id;
+    }
+
+    public function DeleteProduct($productId)
+    {
+        $product = Product::find($productId)->delete();        
+    }
+    
     public function incrementViewsCount($productId)
     {
         $key = 'ProductViews' . $productId;
@@ -53,4 +91,5 @@ class ProductService
     {
         Redis::flushdb();
     }
+    
 }

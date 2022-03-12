@@ -15,4 +15,5 @@ Class CompanyService
     {
         return User::find($id);
     }
+    
 }

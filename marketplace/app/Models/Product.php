@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Search\Searchable;
 
+
 class Product extends Model
 {
     use HasFactory;
@@ -22,4 +23,23 @@ class Product extends Model
     {
         return $this->belongsTo(Type::class, 'type_id', 'id');
     }    
+
+    public function category()
+    {
+
+        // return $this->hasOneThrough(
+        //     Category::class,
+        //     Type::class,
+        //     // 'category_id',
+        //     // 'type_id',
+        //     // 'id',
+        //     // 'id'
+        // );
+        //что то тут идет не так...         
+    }
+
+    public function getCategory()
+    {
+        return Category::find($this->type->category_id)->category;
+    }
 }

@@ -10,8 +10,12 @@ a:focus {
     transition: all 0.3s;
 }
 
-.purpl {
-    background: #6d7fcc;
+.table 
+{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
 }
 
 .navbar {
