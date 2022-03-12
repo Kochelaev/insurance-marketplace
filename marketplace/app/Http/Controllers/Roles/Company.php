@@ -3,24 +3,10 @@
 namespace App\Http\Controllers\Roles;
 
 use App\Http\Controllers\RoleController;
-use App\Services\CompanyService;
-use App\Services\ProductService;
-use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class Company extends RoleController
 {
-    private $companyService;
-    private $productService;
-    private $userService;
-
-    public function __construct()
-    {
-        $this->companyService = new CompanyService;
-        $this->productService = new ProductService;
-        $this->userService = new UserService;
-    }
-
     public function home()
     {
         $companyId = $this->userService->getAuthId();
