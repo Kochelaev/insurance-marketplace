@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Roles;
 
 use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
+use App\Incurance\CascoIncurance;
+use App\Incurance\OsagoIncurance;
+use App\Incurance\Casco;
+use App\Incurance\Osago;
+use App\Incurance\Incurance;
 
 class Company extends RoleController
 {
@@ -35,6 +40,19 @@ class Company extends RoleController
         $companyId = $this->userService->getAuthId();
         $products = $this->productService->getProductsByCompanyId($companyId);
         return view('company.products', compact('products'));
+    }
+
+    public function productCreateSetType()
+    {
+        $types = $this->helper->getAllTypes();
+        return view('company.productsSetType', compact('types'));
+    }
+
+    public function productCreateForm($typeId)
+    {
+        // перенести в сервис
+        Incurance::getNewIncuranceByType($typeId);
+        
     }
 
     public function productDelete($productId)

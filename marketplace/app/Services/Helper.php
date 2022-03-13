@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Category;
+use App\Models\Type;
 
 class Helper
 {
@@ -18,5 +19,10 @@ class Helper
             }
         }
         return $result;
+    }
+
+    public function getAllTypes()
+    {
+        return Type::all();
     }
 }

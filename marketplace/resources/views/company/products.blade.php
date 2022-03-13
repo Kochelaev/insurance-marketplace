@@ -49,7 +49,7 @@
 
     @endif
 
-    <a href="{{ route('company.products.createForm')}}" class="btn btn-primary">
+    <a href="{{ route('company.products.createSetType')}}" class="btn btn-primary">
          {{__('создать новую услугу')}} 
     </a>
 

@@ -10,7 +10,6 @@ use App\Services\Helper;
 
 class CompanyController extends Controller
 {
-    // TODO: bind this in serviceProvider
     public $companyService;
     public $productService;
     public $helper;
@@ -34,7 +33,7 @@ class CompanyController extends Controller
     public function companyShow($companyId)
     {
         $company = $this->companyService->getCompanyById($companyId);
-        $products = $this->productService->getProductsByCompany($companyId);
+        $products = $this->productService->getProductsByCompanyId($companyId);
         $navMenu = $this->helper->getNavMenu();
         return view('companyShow', compact('company', 'products'))
             ->with('navMenu', $navMenu);
