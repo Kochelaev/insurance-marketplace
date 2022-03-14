@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Incurance;
+namespace App\Insurance;
 
-Class Osago implements ProductContract
+class Osago implements ProductContract
 {
+
     public function getCreateForm()
     {
         return 'Osago';

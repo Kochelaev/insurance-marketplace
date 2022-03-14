@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Incurance;
+namespace App\Insurance;
 
-Class DmsIncurance extends Incurance
+Class DmsInsurance extends Insurance
 {
     public function getProduct(): ProductContract
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Incurance;
+namespace App\Insurance;
 
 Class Appartment implements ProductContract
 {

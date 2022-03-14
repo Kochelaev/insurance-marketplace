@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->date('birthdate')->nullable();
             $table->unsignedBigInteger('city_id')->nullable();
             $table->string('adress')->nullable();
-            $table->string('INN')->nullable();
+            $table->unsignedBigInteger('INN')->nullable();
             $table->timestamps();
 
             $table->softDeletes();

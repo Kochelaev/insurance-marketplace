@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Incurance;
+namespace App\Insurance;
 
 use App\Models\Type;
 
-abstract class Incurance
+abstract class Insurance
 {
     abstract public function getProduct(): ProductContract;
 
@@ -14,39 +14,39 @@ abstract class Incurance
         return $product->getCreateForm();
     }
 
-    public static function getNewIncuranceByType($typeId)
+    public static function getNewInsuranceByType($typeId)
     {
         $type = Type::find($typeId)->type;
         if ($type === null)
             return redirect()->back()->withErrors(
-                ['msg' => 'Данный тип страхования недоступент']
+                ['msg' => 'Данный тип страхования недоступен']
             );
         switch ($type) {
             case 'ОСАГО':
-                $incurance = OsagoIncurance::class;
+                $insurance = OsagoInsurance::class;
                 break;
             case 'КАСКО':
-                $incurance = CascoIncurance::class;
+                $insurance = CascoInsurance::class;
                 break;
             case 'Квартира':
-                $incurance = CascoIncurance::class;
+                $insurance = AppartmentInsurance::class;
                 break;
             case 'Ответственность':
-                $incurance = CascoIncurance::class;
+                $insurance = Responsibility::class;
                 break;
             case 'Ипотека':
-                $incurance = CascoIncurance::class;
+                $insurance = MortgageInsurance::class;
                 break;
             case 'ОМС':
-                $incurance = CascoIncurance::class;
+                $insurance = OmsInsurance::class;
                 break;
             case 'ДМС':
-                $incurance = CascoIncurance::class;
+                $insurance = DmsInsurance::class;
                 break;
             case 'Несчастный случай':
-                $incurance = CascoIncurance::class;
+                $insurance = CasualtyInsurance::class;
                 break;
         }
-        return new $incurance();
+        return new $insurance();
     }
 }

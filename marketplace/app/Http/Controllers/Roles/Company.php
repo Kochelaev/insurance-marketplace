@@ -4,11 +4,7 @@ namespace App\Http\Controllers\Roles;
 
 use App\Http\Controllers\RoleController;
 use Illuminate\Http\Request;
-use App\Incurance\CascoIncurance;
-use App\Incurance\OsagoIncurance;
-use App\Incurance\Casco;
-use App\Incurance\Osago;
-use App\Incurance\Incurance;
+use App\Insurance\Insurance;
 
 class Company extends RoleController
 {
@@ -50,8 +46,11 @@ class Company extends RoleController
 
     public function productCreateForm($typeId)
     {
-        // перенести в сервис
-        Incurance::getNewIncuranceByType($typeId);
+        // может потом перенести в сервис?
+        $insurance = Insurance::getNewinsuranceByType($typeId);
+        $insurance->CreateProductForm();
+        
+        
         
     }
 
