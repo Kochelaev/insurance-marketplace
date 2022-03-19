@@ -17,7 +17,7 @@ class CreateProductUsersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
-            $table->boolean('is_actually')->default(true);
+            $table->char('status', 1)->default('O');
             $table->timestamps();
 
             $table->softDeletes();
@@ -25,7 +25,7 @@ class CreateProductUsersTable extends Migration
             $table->index('product_id', 'product_users_product_idx');
             $table->foreign('product_id', 'product_users_product_fk')->on('products')->references('id');
 
-            $table->index('user_id', 'product_usrs_user_idx');
+            $table->index('user_id', 'product_users_user_idx');
             $table->foreign('user_id', 'product_users_user_fk')->on('users')->references('id');
         });
     }
