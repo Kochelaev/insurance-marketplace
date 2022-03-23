@@ -14,6 +14,6 @@ class MessageController extends Controller
             auth()->user()->id,
             $request->get('companyId'),
             $request->get('productId')
-        );       
+        );
     }
 }

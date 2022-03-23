@@ -15,14 +15,14 @@ class Company extends RoleController
         return view('company.home', compact('profile'));
     }
 
-    public function CompanyProfileUpdateForm()
+    public function profileUpdateForm()
     {
         $companyId = $this->userService->getAuthId();
         $profile = $this->userService->getCompanyProfile($companyId);
         return view('company.profileUpdateForm', compact('profile'));
     }
 
-    public function CompanyProfileUpdate(Request $request)
+    public function profileUpdate(Request $request)
     {      
         //добавить валидацию и проверку пароля
         $companyId = $this->userService->getAuthId();
@@ -49,8 +49,6 @@ class Company extends RoleController
         // может потом перенести в сервис?
         $insurance = Insurance::getNewinsuranceByType($typeId);
         $insurance->CreateProductForm();
-        
-        
         
     }
 

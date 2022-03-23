@@ -70,6 +70,16 @@ services:
     networks:
       - marketplace
 
+  rabbitmq:
+    container_name: marketplace-rabbitmq
+    image: rabbitmq:3-management    
+    restart: unless-stopped
+    ports:
+      - 15672:15672
+      - 5672:5672
+    networks:
+      - marketplace
+
 networks:
   marketplace:
     driver: bridge

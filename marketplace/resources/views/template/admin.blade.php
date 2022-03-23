@@ -35,6 +35,12 @@
                 </li>
             @endif
 
+            @if (Route::has('admin.products'))
+                <li class="nav-item pl-3">
+                    <a href="{{ route('admin.products') }}">{{ __('Продукты') }}</a>
+                </li>
+            @endif
+
             @if (Route::has('admin.callback'))
                 <li class="nav-item pl-3">
                     <a href="{{ route('admin.callback') }}">{{ __('Обратные звонки') }}</a>

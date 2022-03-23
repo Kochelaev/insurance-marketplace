@@ -4,32 +4,36 @@
 
 <div class="container">
 
-    @if($users->isNotEmpty())
+    @if($products->isNotEmpty())
 
         <div>
-            {{$users->links()}}
+            {{$products->links()}}
         </div>
    
         <table class="table">
             <tr>
                 <th>id</th>
-                <th>ФИО</th>              
+                <th>Название</th>
+                <th>Категория</th>
+                <th>Тип</th>
                 <th> </th>
                 <th> </th>
             </tr>
-            @foreach ($users as $user)
+            @foreach ($products as $product)
                 <tr>
-                    <td>{{$user->id}}</td>
-                    <td>{{$user->firstname}} {{$user->lastname}} {{$user->middlename}}</td>
+                    <td>{{$product->id}}</td>
+                    <td>{{$product->title}}</td>
+                    <td>{{$product->getCategory()}}</td>
+                    <td>{{$product->type->type}}</td>
                     <td>                        
-                        <a href="{{ route('admin.users.updateForm', $user->id) }}">
+                        <a href="{{ route('admin.products.updateForm', $product->id) }}">
                             <button>
                                 {{ __('редактировать') }}
                             </button>
                         </a>
                     </td>                    
                     <td>
-                        <form action="{{ route('admin.users.delete', $user->id)}}" method="POST">
+                        <form action="{{ route('admin.products.delete', $product->id)}}" method="POST">
                             {{-- @method('POST') --}}
                             @csrf
                             <input type="submit" value="удалить">
@@ -41,15 +45,14 @@
         </table>
         
         @else       
-            <p> {{__('Нет пользователей')}} </p>
+            <p> {{__('нет активных услуг')}} </p>
 
-    @endif    
+    @endif
 
-    <a href="{{ route('admin.users.restorForm')}}" class="btn btn-primary">
-        {{__('востановить удаленого пользователя')}} 
-   </a>
+    <a href="{{ route('admin.products.restorForm')}}" class="btn btn-primary">
+        {{__('востановить удаленную услугу')}} 
+    </a>
 
 </div>
-
 
 @endsection

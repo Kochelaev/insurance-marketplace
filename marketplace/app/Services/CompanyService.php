@@ -13,7 +13,11 @@ Class CompanyService
 
     public function getCompanyById($id)
     {
-        return User::find($id);
+        return User::where('role', 'c')->find($id);
     }
-    
+
+    public function getTrashCompanys()
+    {
+        return User::onlyTrashed()->where('role', 'C')->paginate(10);
+    }    
 }

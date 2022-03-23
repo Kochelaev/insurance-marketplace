@@ -38,4 +38,5 @@ class CompanyController extends Controller
         return view('companyShow', compact('company', 'products'))
             ->with('navMenu', $navMenu);
     }
+        
 }

@@ -42,6 +42,7 @@ class ProductController extends Controller
     {
         //возможно можно реализовать красивее через middleware
         $product = $this->productService->getProductById($productId);
+        $this->productService->incrementViewsCount($productId);
         if (Auth()->user()) $view = 'user.productShow';
         else $view = 'productShow';
         

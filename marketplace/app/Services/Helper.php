@@ -25,4 +25,9 @@ class Helper
     {
         return Type::all();
     }
+
+    public function getAllCategories()
+    {
+        return Category::all();
+    }
 }

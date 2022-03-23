@@ -75,9 +75,17 @@ class ProductService
         return $product->owner_id;
     }
 
-    public function DeleteProduct($productId)
+    public function deleteProduct($productId)
     {
-        $product = Product::find($productId)->delete();        
+        Product::find($productId)->delete();        
+    }
+
+    public function deleteProductsByCompanyId($companyId)
+    {
+        $products = Product::where('owner_id', $companyId)->get();
+        foreach($products as $product) {
+            $product->delete();
+        }        
     }
     
     public function incrementViewsCount($productId)

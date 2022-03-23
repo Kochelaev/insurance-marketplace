@@ -6,8 +6,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-
-
 Auth::routes();
 
 Route::group(['namespace' => 'Auth'], function () {
@@ -33,16 +31,6 @@ Route::get('/search', 'SearchController@search');
 
 Route::post('/callbackRequest', 'MessageController@callbackRequest')->name('callbackRequest');
 
-Route::group(['namespace' => 'Roles', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
-    Route::get('/', 'Admin@home')->name('admin.home');
-    Route::get('/users', 'Admin@users')->name('admin.users');
-    Route::get('/companys', 'Admin@companys')->name('admin.companys');
-    Route::get('/callback', 'Admin@callback')->name('admin.callback');
-    Route::get('/mail', 'Admin@mail')->name('admin.mail');
-});
-
-
-
 Route::group(['namespace' => 'Roles', 'prefix' => 'user', 'middleware' => 'user'], function () {
     Route::get('/', 'AuthUser@home')->name('user.home');
     Route::get('/orders', 'AuthUser@orders')->name('user.orders');
@@ -51,21 +39,15 @@ Route::group(['namespace' => 'Roles', 'prefix' => 'user', 'middleware' => 'user'
     Route::get('/callback', 'AuthUser@callback')->name('user.callback');
 });
 
-Route::get('/test', function (Request $request) {
-    $product = Product::find(1);
-    dd($product->category);
-    dd($product->getCategory());
-});
-
 Route::group(['namespace' => 'Roles', 'prefix' => 'company', 'middleware' => 'company'], function () {
 
     Route::get('/', 'Company@home')->name('company.home');
-    Route::get('/products', 'Company@products')->name('company.products');
     Route::name('company.profile.')->prefix('profile')->group(function () {
-        Route::get('/edit', 'Company@CompanyProfileUpdateForm')->name('updateForm');
-        Route::post('/edit', 'Company@CompanyProfileUpdate')->name('update');
+        Route::get('/edit', 'Company@profileUpdateForm')->name('updateForm');
+        Route::post('/edit', 'Company@profileUpdate')->name('update');
     });
 
+    Route::get('/products', 'Company@products')->name('company.products');
     Route::name('company.products.')->prefix('products')->group(function () {
         Route::get('/create', 'Company@productCreateSetType')->name('createSetType');
         Route::get('/create/{typeId}', 'Company@productCreateForm')->name('createForm');
@@ -79,4 +61,39 @@ Route::group(['namespace' => 'Roles', 'prefix' => 'company', 'middleware' => 'co
 
     Route::get('/orders', 'Company@orders')->name('company.orders');
     Route::get('/callback', 'Company@callback')->name('company.callback');
+});
+
+Route::group(['namespace' => 'Roles', 'prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::get('/', 'Admin@home')->name('admin.home');
+    Route::name('admin.profile.')->prefix('profile')->group(function () {
+        Route::get('/edit', 'Admin@profileUpdateForm')->name('updateForm');
+        Route::post('/edit', 'Admin@profileUpdate')->name('update');
+    });
+    Route::get('/users', 'Admin@users')->name('admin.users');
+    Route::name('admin.users.')->prefix('users')->group(function () {        
+        Route::get('/edit/{id}', 'Admin@userUpdateForm')->name('updateForm');
+        Route::post('/edit/{id}', 'Admin@userUpdate')->name('update');
+        Route::post('/delete/{id}', 'Admin@userDelete')->name('delete');
+        Route::get('/restore', 'Admin@usersRestoreForm')->name('restorForm');
+        Route::post('/restore/{id}', 'Admin@userRestore')->name('restore');    
+    });
+    Route::get('/companys', 'Admin@companys')->name('admin.companys');
+    Route::name('admin.companys.')->prefix('companys')->group(function () {        
+        Route::get('{id}/products', 'Admin@companyProducts')->name('products');
+        Route::get('/edit/{id}', 'Admin@companyUpdateForm')->name('updateForm');
+        Route::post('/edit/{id}', 'Admin@companyUpdate')->name('update');
+        Route::post('/delete/{id}', 'Admin@companyDelete')->name('delete');
+        Route::get('/restore', 'Admin@companyRestoreForm')->name('restorForm');
+        Route::post('/restore/{id}', 'Admin@companyRestore')->name('restore');    
+    });    
+    Route::get('/products', 'Admin@products')->name('admin.products');
+    Route::name('admin.products.')->prefix('products')->group(function () {        
+        Route::get('/edit/{id}', 'Admin@productUpdateForm')->name('updateForm');
+        Route::post('/edit/{id}', 'Admin@productUpdate')->name('update');
+        Route::post('/delete/{id}', 'Admin@productDelete')->name('delete');
+        Route::get('/restore', 'Admin@productRestoreForm')->name('restorForm');
+        Route::post('/restore/{id}', 'Admin@productRestore')->name('restore');    
+    });
+    Route::get('/callback', 'Admin@callback')->name('admin.callback');
+    Route::get('/mail', 'Admin@mail')->name('admin.mail');
 });
