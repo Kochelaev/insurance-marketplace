@@ -2,10 +2,24 @@
 
 namespace App\Insurance;
 
-Class Mortgage implements ProductContract
+use App\Models\Apartment;
+
+class Mortgage implements ProductContract
 {
     public function getCreateForm()
     {
-        return 'Mortgage';
+        return 'Ипотека';
+    }
+
+    public function getTarget(): string
+    {
+        return Apartment::class;
+    }
+
+    public function getCoefficientsList(): array
+    {
+        return [
+            'area' => 'Коэфициент площади'
+        ];
     }
 }

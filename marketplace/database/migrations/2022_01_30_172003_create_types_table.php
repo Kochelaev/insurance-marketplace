@@ -17,8 +17,7 @@ class CreateTypesTable extends Migration
             $table->id();
             $table->string('type')->unique();
             $table->unsignedBigInteger('category_id');
-            $table->text('formula')->nullable(); //убери nullable
-            $table->timestamps();            
+            $table->timestamps();
 
             $table->softDeletes();
 

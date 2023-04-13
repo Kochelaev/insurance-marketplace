@@ -51,7 +51,7 @@ Route::group(['namespace' => 'Roles', 'prefix' => 'company', 'middleware' => 'co
     Route::name('company.products.')->prefix('products')->group(function () {
         Route::get('/create', 'Company@productCreateSetType')->name('createSetType');
         Route::get('/create/{typeId}', 'Company@productCreateForm')->name('createForm');
-        Route::post('/create/{typeId}', 'Company@productCreate')->name('create');
+        Route::post('/create', 'Company@productCreate')->name('create');
         Route::get('/edit/{id}', 'Company@productUpdateForm')->name('updateForm');
         Route::post('/edit/{id}', 'Company@productUpdate')->name('update');
         Route::post('/delete/{id}', 'Company@productDelete')->name('delete');

@@ -1,5 +1,6 @@
 <?php
 
+use App\Enum\Statuses;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,9 +18,10 @@ class CreateProductUsersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
-            $table->char('status', 1)->default('O');
-            $table->timestamps();
+            $table->unsignedFloat('price')->default('0');
+            $table->char('status', 1)->default(Statuses::OPEN);
 
+            $table->timestamps();
             $table->softDeletes();
 
             $table->index('product_id', 'product_users_product_idx');

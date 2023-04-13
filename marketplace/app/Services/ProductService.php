@@ -6,10 +6,8 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Redis;
 
-
 class ProductService
 {
-
     public function getProductsByType(int $typeId)
     {
         return Product::where('type_id', $typeId)->paginate(10);
@@ -45,21 +43,21 @@ class ProductService
     public function getTrashProductByCompanyId($companyId)
     {
         return Product::onlyTrashed()
-        ->where('owner_id', $companyId)
-        ->paginate(10);
+            ->where('owner_id', $companyId)
+            ->paginate(10);
     }
 
     public function getTrashProductOwnerId($productId)
     {
         $product = Product::onlyTrashed()
-        ->find($productId);
+            ->find($productId);
         return $product->owner_id;
     }
-    
+
     public function RestoreProductById($productId)
     {
         $product = Product::onlyTrashed()
-        ->find($productId);
+            ->find($productId);
         $product->restore();
     }
 
@@ -77,17 +75,17 @@ class ProductService
 
     public function deleteProduct($productId)
     {
-        Product::find($productId)->delete();        
+        Product::find($productId)->delete();
     }
 
     public function deleteProductsByCompanyId($companyId)
     {
         $products = Product::where('owner_id', $companyId)->get();
-        foreach($products as $product) {
+        foreach ($products as $product) {
             $product->delete();
-        }        
+        }
     }
-    
+
     public function incrementViewsCount($productId)
     {
         $key = 'ProductViews' . $productId;
@@ -99,5 +97,16 @@ class ProductService
     {
         Redis::flushdb();
     }
-    
+
+    public function CreateNewPoroduct($productData)
+    {
+        if (isset($productData['coefficients'])) {
+            $productData['coefficients'] = json_encode($productData['coefficients']);
+        }
+        if (empty($productData['owner_id'])) {
+            $productData['owner_id'] = auth()->user()->id;
+        }
+
+        return Product::create($productData);
+    }
 }

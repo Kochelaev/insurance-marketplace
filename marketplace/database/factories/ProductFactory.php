@@ -20,7 +20,8 @@ class ProductFactory extends Factory
             'owner_id' => random_int(1, 10),
             'type_id' => random_int(1, 8),
             'description' => $this->faker->text(),
-            'coefficients' => $this->faker->slug(),
+            // 'coefficients' => $this->faker->slug(),
+            'base_price' => (float) rand(10, 50000)
         ];
     }
 }

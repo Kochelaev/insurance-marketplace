@@ -14,6 +14,17 @@ class Product extends Model
     use SoftDeletes;
     use Searchable;
 
+    protected $fillable = [
+        'id',
+        'title',
+        'content',
+        'owner_id',
+        'type_id',
+        'description',
+        'base_price',
+        'coefficients',
+    ];
+
     public function company()
     {
         return $this->belongsTo(User::class, 'owner_id', 'id');
@@ -22,11 +33,10 @@ class Product extends Model
     public function type()
     {
         return $this->belongsTo(Type::class, 'type_id', 'id');
-    }    
+    }
 
     public function category()
     {
-
         // return $this->hasOneThrough(
         //     Category::class,
         //     Type::class,

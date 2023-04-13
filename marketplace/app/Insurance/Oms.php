@@ -2,10 +2,25 @@
 
 namespace App\Insurance;
 
-Class Oms implements ProductContract
+use App\Models\User;
+
+class Oms implements ProductContract
 {
     public function getCreateForm()
     {
-        return 'Oms';
+        return 'ОМС';
+    }
+
+    public function getTarget(): string
+    {
+        return User::class;
+    }
+
+    public function getCoefficientsList(): array
+    {
+        return [
+            'Sex' => ['callable' => Callables::sexCoefficients()],
+            'birthdate' => ['callable' => Callables::ageCoefficients()],
+        ];
     }
 }

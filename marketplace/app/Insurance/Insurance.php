@@ -14,6 +14,11 @@ abstract class Insurance
         return $product->getCreateForm();
     }
 
+    /**
+     * Return Insurance Class
+     *
+     * @return App\Insurance\ProductContract
+     */
     public static function getNewInsuranceByType($typeId)
     {
         $type = Type::find($typeId)->type;
@@ -32,7 +37,7 @@ abstract class Insurance
                 $insurance = AppartmentInsurance::class;
                 break;
             case 'Ответственность':
-                $insurance = Responsibility::class;
+                $insurance = ResponsibilityInsurance::class;
                 break;
             case 'Ипотека':
                 $insurance = MortgageInsurance::class;
@@ -47,6 +52,9 @@ abstract class Insurance
                 $insurance = CasualtyInsurance::class;
                 break;
         }
-        return new $insurance();
+
+        $object = class_exists($insurance) ? new $insurance() : null;
+
+        return $object;
     }
 }

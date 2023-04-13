@@ -23,7 +23,7 @@ class Company extends RoleController
     }
 
     public function profileUpdate(Request $request)
-    {      
+    {
         //добавить валидацию и проверку пароля
         $companyId = $this->userService->getAuthId();
         $company = $this->companyService->getCompanyById($companyId);
@@ -47,13 +47,16 @@ class Company extends RoleController
     public function productCreateForm($typeId)
     {
         // может потом перенести в сервис?
-        $insurance = Insurance::getNewinsuranceByType($typeId);
-        $insurance->CreateProductForm();
-        
+        $insurance = Insurance::getNewinsuranceByType($typeId)->getProduct();
+
+        $insuranceType = $insurance->getCreateForm();
+        $coefficients = $insurance->getCoefficientsList();
+
+        return view('company.productCreateForm', compact('insuranceType', 'coefficients', 'typeId'));
     }
 
     public function productDelete($productId)
-    {     
+    {
         //проверка владельца
         $ownerId = $this->productService->getProductOwnerId($productId);
         if ($ownerId === $this->userService->getAuthId()) {
@@ -73,7 +76,7 @@ class Company extends RoleController
     }
 
     public function productRestore($productId)
-    {      
+    {
         //проверка владельца
         $ownerId = $this->productService->getTrashProductOwnerId($productId);
         if ($ownerId === $this->userService->getAuthId()) {
@@ -85,6 +88,11 @@ class Company extends RoleController
         return redirect()->back()->withErrors($error);
     }
 
+    public function productUpdateForm()
+    {
+        return view('company.productUpdateForm');
+    }
+
     public function orders()
     {
         return view('company.orders');
@@ -93,5 +101,12 @@ class Company extends RoleController
     public function callback()
     {
         return view('company.callback');
+    }
+
+    public function productCreate(Request $request)
+    {
+        $productData = $request->all();
+        $this->productService->CreateNewPoroduct($productData);
+        return redirect()->route('company.products');
     }
 }
