@@ -32,6 +32,13 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                <label for="base_price" class="col-md-4 col-form-label text-md-end">{{ __('Базовая ставка') }}</label>
+                                <div class="col-md-6">
+                                    <input id="base_price" type="textbox" class="form-control" name="base_price">
+                                </div>
+                            </div>
+
                             @foreach($coefficients as $key => $coeff)
                                 @if(is_array($coeff)) 
                                     <b><label for="{{$key}}" class="col-md-4 col-form-label text-md-end">{{array_key_first($coeff)}}</label></b>

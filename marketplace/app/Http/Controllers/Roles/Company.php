@@ -88,9 +88,16 @@ class Company extends RoleController
         return redirect()->back()->withErrors($error);
     }
 
-    public function productUpdateForm()
+    public function productUpdateForm($id)
     {
-        return view('company.productUpdateForm');
+        $product = $this->productService->getProductById($id);
+        dd($product);
+        if (!isset($product)) {
+            $error = ['msg' => 'Услуга не найдена'];
+            return redirect()->route('home')->withErrors($error);
+        }
+
+        return view('company.productUpdateForm', compact('product'));
     }
 
     public function orders()

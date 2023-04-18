@@ -28,6 +28,11 @@ class ProductService
         return Product::find($productId);
     }
 
+    public function getProductData($productId)
+    {
+        return Product::find($productId)->with('types');
+    }
+
     public function getViewsCount($productId)
     {
         $key = 'ProductViews' . $productId;
