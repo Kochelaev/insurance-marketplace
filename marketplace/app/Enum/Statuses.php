@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Enum;
+
 /**
  * Class contains statuses of orders.
  *

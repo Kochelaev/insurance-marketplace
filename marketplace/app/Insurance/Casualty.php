@@ -2,25 +2,12 @@
 
 namespace App\Insurance;
 
-use App\Models\User;
+use App\Insurance\BaseInsurance\UserType;
 
-class Casualty implements ProductContract
+class Casualty extends UserType implements ProductContract
 {
     public function getCreateForm()
     {
         return 'Несчастный случай';
-    }
-
-    public function getTarget(): string
-    {
-        return User::class;
-    }
-
-    public function getCoefficientsList(): array
-    {
-        return [
-            'Sex' => ['Коефициенты пола' => Callables::sexCoefficients()],
-            'birthdate' => ['Коефициенты возраста' => Callables::ageCoefficients()],
-        ];
     }
 }

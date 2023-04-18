@@ -1,14 +1,16 @@
 <?php
 
-namespace App\Insurance;
+namespace App\Insurance\Helpers;
 
-class Callables
+use App\Enum\Sex;
+
+class Coefficients
 {
     public static function sexCoefficients()
     {
         return [
-            'M' => 'Коеффициент мужского пола',
-            'F' => 'Коеффициент женского пола'
+            Sex::MALE   => 'Коеффициент мужского пола',
+            Sex::FEMALE => 'Коеффициент женского пола'
         ];
     }
 

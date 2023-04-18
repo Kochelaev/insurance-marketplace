@@ -2,7 +2,7 @@
 
 namespace App\Insurance;
 
-Class OmsInsurance extends Insurance
+class OmsInsurance extends Insurance
 {
     public function getProduct(): ProductContract
     {

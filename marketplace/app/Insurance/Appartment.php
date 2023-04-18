@@ -2,24 +2,13 @@
 
 namespace App\Insurance;
 
-use App\Models\Apartment;
+use App\Insurance\BaseInsurance\ApartmentType;
 
-class Appartment implements ProductContract
+class Appartment extends ApartmentType implements ProductContract
 {
     public function getCreateForm()
     {
         return 'Квартира';
     }
-
-    public function getTarget(): string
-    {
-        return Apartment::class;
-    }
-
-    public function getCoefficientsList(): array
-    {
-        return [
-            'area' => 'Коэфициент площади'
-        ];
-    }
+  
 }
