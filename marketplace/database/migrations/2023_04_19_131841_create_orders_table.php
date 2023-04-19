@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductUsersTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateProductUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_users', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('user_id');
@@ -24,11 +24,11 @@ class CreateProductUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->index('product_id', 'product_users_product_idx');
-            $table->foreign('product_id', 'product_users_product_fk')->on('products')->references('id');
+            $table->index('product_id', 'orders_product_idx');
+            $table->foreign('product_id', 'orders_product_fk')->on('products')->references('id');
 
-            $table->index('user_id', 'product_users_user_idx');
-            $table->foreign('user_id', 'product_users_user_fk')->on('users')->references('id');
+            $table->index('user_id', 'orders_user_idx');
+            $table->foreign('user_id', 'orders_user_fk')->on('users')->references('id');
         });
     }
 
@@ -39,6 +39,6 @@ class CreateProductUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_users');
+        Schema::dropIfExists('orders');
     }
 }

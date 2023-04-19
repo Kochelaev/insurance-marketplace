@@ -21,6 +21,7 @@
                     </div>
                     <div>{{$product->company->company}}</div>
                     <div>{{$product->description}}</div>
+                    <a href="#" class="text-success">От {{$product->base_price}} Р.</a>
                 </div>
             </a>
         @endforeach
