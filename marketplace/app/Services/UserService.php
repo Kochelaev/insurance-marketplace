@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enum\ProfileRoles;
 use App\Models\User;
 use Facade\FlareClient\Truncation\TruncationStrategy;
 
@@ -12,6 +13,11 @@ Class UserService
         return auth()->user()->id;
     }
 
+    public function getUserProfile($userId)
+    {
+        return User::where('role', ProfileRoles::USER)->find($userId);
+    }
+
     public function getCompanyProfile($userId)
     {
         return User::where('company', '!=', null)->find($userId);
@@ -19,7 +25,7 @@ Class UserService
 
     public function getAdminProfile($userId)
     {
-        return User::where('role', 'A')->find($userId);
+        return User::where('role', ProfileRoles::ADMIN)->find($userId);
     }
 
     public function getAllUsers()

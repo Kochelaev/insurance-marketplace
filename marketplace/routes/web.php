@@ -30,6 +30,10 @@ Route::post('/callbackRequest', 'MessageController@callbackRequest')->name('call
 
 Route::group(['namespace' => 'Roles', 'prefix' => 'user', 'middleware' => 'user'], function () {
     Route::get('/', 'AuthUser@home')->name('user.home');
+    Route::name('user.profile.')->prefix('profile')->group(function () {
+        Route::get('/edit', 'AuthUser@profileUpdateForm')->name('updateForm');
+        Route::post('/edit', 'AuthUser@profileUpdate')->name('update');
+    });
     Route::get('/orders', 'AuthUser@orders')->name('user.orders');
     Route::get('/autos', 'AuthUser@autos')->name('user.autos');
     Route::get('/houses', 'AuthUser@houses')->name('user.houses');
