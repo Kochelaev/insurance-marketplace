@@ -24,7 +24,8 @@ class Company extends RoleController
 
     public function profileUpdate(Request $request)
     {
-        //добавить валидацию и проверку пароля
+        // TODO: добавить валидацию и проверку пароля
+        // TODO: Перенеси апдейт в юзер сервис
         $companyId = $this->userService->getAuthId();
         $company = $this->companyService->getCompanyById($companyId);
         $company->update($request->except('_token'));
@@ -57,7 +58,7 @@ class Company extends RoleController
 
     public function productDelete($productId)
     {
-        //проверка владельца
+        //TODO: проверка владельца
         $ownerId = $this->productService->getProductOwnerId($productId);
         if ($ownerId === $this->userService->getAuthId()) {
             $this->productService->DeleteProduct($productId);
@@ -90,14 +91,29 @@ class Company extends RoleController
 
     public function productUpdateForm($id)
     {
-        $product = $this->productService->getProductById($id);
-        dd($product);
+        //ToDo: добавить проверку что услуга принадлежит компании
+         $product = $this->productService->getProductById($id);
         if (!isset($product)) {
             $error = ['msg' => 'Услуга не найдена'];
             return redirect()->route('home')->withErrors($error);
         }
 
-        return view('company.productUpdateForm', compact('product'));
+        $insuranceType = $product->type->type;  //bad style
+        $typeId = $product->type->id;   //костыль
+        $coefficients = Insurance::getNewinsuranceByType($typeId)->getProduct()->getCoefficientsList(); //возможно тоже костыль
+        $coefficients_values = json_decode($product->coefficients, true);
+
+        return view(
+            'company.productUpdateForm',
+            compact('product', 'insuranceType', 'typeId', 'coefficients', 'coefficients_values')
+        );
+    }
+
+    public function productUpdate($id, Request $request)
+    {
+        //ToDo: добавить проверку что услуга принадлежит компании
+        $productData = $this->productService->UpdateProduct($id, $request);
+        return redirect()->route('company.products');
     }
 
     public function orders()
@@ -113,7 +129,7 @@ class Company extends RoleController
     public function productCreate(Request $request)
     {
         $productData = $request->all();
-        $this->productService->CreateNewPoroduct($productData);
+        $this->productService->CreateNewProduct($productData);
         return redirect()->route('company.products');
     }
 }

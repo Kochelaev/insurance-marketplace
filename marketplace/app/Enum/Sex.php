@@ -8,6 +8,6 @@ namespace App\Enum;
  */
 class Sex
 {
-    const MALE = 'N';
+    const MALE = 'M';
     const FEMALE = 'F';
 }

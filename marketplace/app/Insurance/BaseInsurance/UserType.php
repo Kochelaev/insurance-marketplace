@@ -15,8 +15,8 @@ abstract class UserType
     public function getCoefficientsList(): array
     {
         return [
-            'Sex' => ['callable' => Coefficients::sexCoefficients()],
-            'birthdate' => ['callable' => Coefficients::ageCoefficients()],
+            'Sex' => ['Коеффициенты пола:' => Coefficients::sexCoefficients()],
+            'birthdate' => ['Коеффициенты возраста:' => Coefficients::ageCoefficients()],
         ];
     }
 }

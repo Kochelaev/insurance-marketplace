@@ -38,10 +38,9 @@
                                     <input id="base_price" type="textbox" class="form-control" name="base_price">
                                 </div>
                             </div>
-
                             @foreach($coefficients as $key => $coeff)
                                 @if(is_array($coeff)) 
-                                    <b><label for="{{$key}}" class="col-md-4 col-form-label text-md-end">{{array_key_first($coeff)}}</label></b>
+                                    <b><label for="{{$key}}" class="col-md-16 col-form-label text-md-end">{{array_key_first($coeff)}}</label></b>
                                     @foreach (reset($coeff) as $subkey => $field)                                    
                                         @php $globalKey =  $key.'.'.$subkey; @endphp
                                         <div class="row mb-3">

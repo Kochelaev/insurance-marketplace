@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
 class ProductService
@@ -103,7 +104,7 @@ class ProductService
         Redis::flushdb();
     }
 
-    public function CreateNewPoroduct($productData)
+    public function CreateNewProduct($productData)
     {
         if (isset($productData['coefficients'])) {
             $productData['coefficients'] = json_encode($productData['coefficients']);
@@ -113,5 +114,20 @@ class ProductService
         }
 
         return Product::create($productData);
+    }
+
+    public function UpdateProduct($productId, Request $request)
+    {
+        $product = Product::find($productId);
+        if (!isset($product)) {
+            return false;
+        }
+
+        $productData = $request->except('_token');
+        if (isset($productData['coefficients'])) {
+            $productData['coefficients'] = json_encode($productData['coefficients']) ?: '';
+        }
+
+        return $product->update($productData);
     }
 }
